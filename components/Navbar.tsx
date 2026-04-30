@@ -1,9 +1,38 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+const navItems = [
+    {
+        label: "Home",
+        href: "/",
+    },
+    {
+        label: "Cirugía Mamaria",
+        href: "/cirugia-mamaria",
+    },
+    {
+        label: "Abdomen",
+        href: "/abdomen",
+    },
+    {
+        label: "Rinoplastía",
+        href: "/rinoplastia",
+    },
+    {
+        label: "Glúteos",
+        href: "/gluteos",
+    },
+    {
+        label: "Quién soy",
+        href: "/quien-soy",
+    },
+];
+
 export default function Navbar() {
+    const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -38,32 +67,24 @@ export default function Navbar() {
 
                 {/* NAV LINKS */}
                 <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-                    <Link href="/" className="hover:opacity-60 transition">
-                        Home
-                    </Link>
+                    {navItems.map((item) => {
+                        const isActive = pathname === item.href;
 
-                    <Link
-                        href="/cirugia-mamaria"
-                        className="hover:opacity-60 transition"
-                    >
-                        Cirugía Mamaria
-                    </Link>
-
-                    <Link href="#" className="hover:opacity-60 transition">
-                        Abdomen
-                    </Link>
-
-                    <Link href="#" className="hover:opacity-60 transition">
-                        Rinoplastía
-                    </Link>
-
-                    <Link href="#" className="hover:opacity-60 transition">
-                        Glúteos
-                    </Link>
-
-                    <Link href="#" className="hover:opacity-60 transition">
-                        Quién soy
-                    </Link>
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={`transition ${isActive
+                                        ? scrolled
+                                            ? "text-black font-semibold"
+                                            : "text-white font-semibold"
+                                        : "opacity-70 hover:opacity-100"
+                                    }`}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 {/* CTA */}

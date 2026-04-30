@@ -39,19 +39,19 @@ export default function Footer() {
                             Cirugía Mamaria
                         </Link>
 
-                        <Link href="#" className="hover:text-white transition">
+                        <Link href="/abdomen" className="hover:text-white transition">
                             Abdomen
                         </Link>
 
-                        <Link href="#" className="hover:text-white transition">
+                        <Link href="/rinoplastia" className="hover:text-white transition">
                             Rinoplastía
                         </Link>
 
-                        <Link href="#" className="hover:text-white transition">
+                        <Link href="/gluteos" className="hover:text-white transition">
                             Glúteos
                         </Link>
 
-                        <Link href="#" className="hover:text-white transition">
+                        <Link href="/quien-soy" className="hover:text-white transition">
                             Quién soy
                         </Link>
                     </nav>
@@ -95,6 +95,7 @@ export default function Footer() {
                     <a href="#" className="hover:text-white transition">
                         Política de privacidad
                     </a>
+
                     <a href="#" className="hover:text-white transition">
                         Términos y condiciones
                     </a>
