@@ -4,87 +4,111 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export default function Hero() {
-    const titleRef = useRef(null);
-    const textRef = useRef(null);
-    const buttonRef = useRef(null);
+    const titleRef = useRef<HTMLHeadingElement | null>(null);
+    const eyebrowRef = useRef<HTMLSpanElement | null>(null);
+    const textRef = useRef<HTMLParagraphElement | null>(null);
+    const buttonRef = useRef<HTMLAnchorElement | null>(null);
 
     useEffect(() => {
         const tl = gsap.timeline();
 
         tl.fromTo(
-            titleRef.current,
-            { y: 40, opacity: 0 },
+            eyebrowRef.current,
+            { y: 24, opacity: 0 },
             {
                 y: 0,
                 opacity: 1,
-                duration: 1,
+                duration: 0.8,
                 ease: "power3.out",
             }
         )
             .fromTo(
-                textRef.current,
-                { y: 30, opacity: 0 },
+                titleRef.current,
+                { y: 48, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
                     duration: 1,
                     ease: "power3.out",
                 },
-                "-=0.6"
+                "-=0.45"
+            )
+            .fromTo(
+                textRef.current,
+                { y: 32, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: "power3.out",
+                },
+                "-=0.55"
             )
             .fromTo(
                 buttonRef.current,
-                { y: 20, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
                     duration: 0.8,
                     ease: "power3.out",
                 },
-                "-=0.6"
+                "-=0.5"
             );
     }, []);
 
     return (
         <section className="relative h-screen flex items-center justify-center text-white overflow-hidden pt-20">
-
-            {/* BACKGROUND */}
-            <div className="absolute inset-0 bg-[url('/images/hero.jpg')] bg-cover bg-center scale-105" />
+            {/* VIDEO BACKGROUND */}
+            <video
+                className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 contrast-110"
+                src="/videos/hero.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+            />
 
             {/* OVERLAY */}
-            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-black/65" />
+
+            {/* GRADIENT */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
 
             {/* CONTENT */}
-            <div className="relative z-10 text-center px-6 max-w-3xl">
+            <div className="relative z-10 text-center px-6 max-w-4xl">
+                <span
+                    ref={eyebrowRef}
+                    className="inline-block text-xs md:text-sm tracking-[0.35em] uppercase text-white/70 mb-6"
+                >
+                    Cirugía plástica · Resultados naturales
+                </span>
 
-                {/* TITLE */}
                 <h1
                     ref={titleRef}
-                    className="text-4xl md:text-6xl font-semibold mb-6 leading-tight"
+                    className="text-4xl md:text-7xl font-semibold mb-8 leading-[1.05]"
                 >
-                    Esto no es un filtro.
+                    Más que una cirugía.
                     <br />
-                    <span className="text-gray-300">
-                        Es un cambio real.
-                    </span>
+                    <span className="text-white/70">Un cambio real, acompañado.</span>
                 </h1>
 
-                {/* TEXT */}
                 <p
                     ref={textRef}
-                    className="text-lg text-gray-300 mb-10"
+                    className="text-base md:text-lg text-white/75 mb-10 max-w-2xl mx-auto leading-relaxed"
                 >
-                    Resultados naturales, evaluación personalizada y acompañamiento en todo el proceso.
+                    Evaluación personalizada, resultados naturales y acompañamiento real
+                    en cada etapa del proceso.
                 </p>
 
-                {/* BUTTON */}
                 <a
                     ref={buttonRef}
                     href="https://wa.me/5491124793160"
                     target="_blank"
-                    className="inline-block border border-white px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition opacity-100"
+                    className="inline-block border border-white px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition"
                 >
-                    CONTACTAR
+                    RESERVAR CONSULTA
                 </a>
             </div>
 
