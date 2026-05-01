@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
 :root {
+  /* Identidad de marca - Dr. Víctor Pugliese */
+  --brand-dark: #25373d;
+  --brand-slate: #506065;
+  --brand-blue: #567580;
+  --brand-soft-blue: #6b8994;
+  --brand-light-blue: #83a0ab;
+  --brand-white: #ffffff;
+
+  /* Base del sitio */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #25373d;
+
+  /* Superficies */
+  --surface: #ffffff;
+  --surface-soft: #f5f8f9;
+  --surface-dark: #25373d;
+
+  /* Textos */
+  --text-primary: #25373d;
+  --text-secondary: #506065;
+  --text-muted: #6b8994;
+  --text-inverted: #ffffff;
+
+  /* Bordes y detalles */
+  --border-soft: rgba(37, 55, 61, 0.12);
+  --border-medium: rgba(37, 55, 61, 0.22);
+
+  /* CTAs */
+  --primary: #25373d;
+  --primary-hover: #506065;
+  --secondary: #83a0ab;
+  --secondary-hover: #6b8994;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-slate: var(--brand-slate);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-soft-blue: var(--brand-soft-blue);
+  --color-brand-light-blue: var(--brand-light-blue);
+  --color-brand-white: var(--brand-white);
+
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-dark: var(--surface-dark);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverted: var(--text-inverted);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Selección de texto */
+::selection {
+  background: var(--brand-light-blue);
+  color: var(--brand-white);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-soft-blue);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-blue);
+}
+
+/* Clases globales reutilizables */
+.section-soft {
+  background: var(--surface-soft);
+}
+
+.section-dark {
+  background: var(--brand-dark);
+  color: var(--brand-white);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg,
+      var(--brand-dark),
+      var(--brand-blue),
+      var(--brand-light-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 18px 45px rgba(37, 55, 61, 0.08);
+}
+
+.brand-card-dark {
+  background: var(--brand-dark);
+  color: var(--brand-white);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand-button-primary {
+  background: var(--primary);
+  color: var(--brand-white);
+  transition: all 0.25s ease;
+}
+
+.brand-button-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.brand-button-secondary {
+  background: var(--brand-light-blue);
+  color: var(--brand-dark);
+  transition: all 0.25s ease;
+}
+
+.brand-button-secondary:hover {
+  background: var(--brand-soft-blue);
+  color: var(--brand-white);
+  transform: translateY(-1px);
 }

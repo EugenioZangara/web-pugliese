@@ -1,18 +1,20 @@
 import type { NextConfig } from "next";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 const repoName = "web-pugliese";
-const isProduction = process.env.NODE_ENV === "production";
 
-const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
+export default function nextConfig(phase: string): NextConfig {
+  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
-  images: {
-    unoptimized: true,
-  },
+  return {
+    ...(isDev ? {} : { output: "export" }),
+    trailingSlash: true,
 
-  basePath: isProduction ? `/${repoName}` : "",
-  assetPrefix: isProduction ? `/${repoName}/` : "",
-};
+    images: {
+      unoptimized: true,
+    },
 
-export default nextConfig;
+    basePath: isDev ? "" : `/${repoName}`,
+    assetPrefix: isDev ? "" : `/${repoName}/`,
+  };
+}
