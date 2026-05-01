@@ -14,7 +14,7 @@ export default function Footer() {
                 <div>
                     <Link
                         href="/"
-                        aria-label="Ir al inicio"
+                        aria-label="Ir al inicio - Dr. Víctor Pugliese"
                         className="mb-6 inline-flex items-center"
                     >
                         <div className="relative h-20 w-[285px] brightness-0 invert md:h-24 md:w-[350px]">
@@ -29,8 +29,9 @@ export default function Footer() {
                     </Link>
 
                     <p className="max-w-xs text-sm leading-relaxed text-white/65">
-                        Cirugía plástica con resultados naturales, evaluación personalizada
-                        y acompañamiento real en todo el proceso.
+                        Cirugía plástica estética en CABA y Buenos Aires con resultados
+                        naturales, evaluación personalizada y acompañamiento real en todo
+                        el proceso.
                     </p>
                 </div>
 
@@ -40,38 +41,41 @@ export default function Footer() {
                         Navegación
                     </h3>
 
-                    <nav className="flex flex-col gap-3 text-sm text-white/68">
+                    <nav
+                        aria-label="Navegación principal del footer"
+                        className="flex flex-col gap-3 text-sm text-white/68"
+                    >
                         <Link href="/" className="transition hover:text-[#83a0ab]">
-                            Home
+                            Inicio
                         </Link>
 
                         <Link
                             href="/cirugia-mamaria"
                             className="transition hover:text-[#83a0ab]"
                         >
-                            Cirugía Mamaria
+                            Cirugía mamaria
                         </Link>
 
                         <Link href="/abdomen" className="transition hover:text-[#83a0ab]">
-                            Abdomen
+                            Cirugía de abdomen
                         </Link>
 
                         <Link
                             href="/rinoplastia"
                             className="transition hover:text-[#83a0ab]"
                         >
-                            Rinoplastía
+                            Rinoplastia
                         </Link>
 
                         <Link href="/gluteos" className="transition hover:text-[#83a0ab]">
-                            Glúteos
+                            Cirugía de glúteos
                         </Link>
 
                         <Link
                             href="/quien-soy"
                             className="transition hover:text-[#83a0ab]"
                         >
-                            Quién soy
+                            Dr. Víctor Pugliese
                         </Link>
                     </nav>
                 </div>
@@ -87,20 +91,22 @@ export default function Footer() {
                             href="https://wa.me/5491124793160"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Contactar por WhatsApp al Dr. Víctor Pugliese"
                             className="transition hover:text-[#83a0ab]"
                         >
                             WhatsApp: 11 2479-3160
                         </a>
 
                         <p className="max-w-xs leading-relaxed text-white/55">
-                            Solicitá una evaluación personalizada para conocer la mejor opción
-                            para tu caso.
+                            Solicitá una evaluación personalizada para conocer qué
+                            procedimiento puede adaptarse mejor a tu caso.
                         </p>
 
                         <a
                             href="https://wa.me/5491124793160"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Reservar consulta por WhatsApp con el Dr. Víctor Pugliese"
                             className="inline-flex w-fit items-center justify-center rounded-full border border-[#83a0ab] bg-white px-6 py-3 text-xs font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                         >
                             RESERVAR CONSULTA
@@ -112,15 +118,26 @@ export default function Footer() {
             <div className="relative z-10 mx-auto mt-12 flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
                 <p>© 2026 Dr. Víctor Pugliese. Todos los derechos reservados.</p>
 
-                <div className="flex gap-4">
-                    <a href="#" className="transition hover:text-[#83a0ab]">
+                <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+                    <Link
+                        href="/politica-de-privacidad"
+                        className="transition hover:text-[#83a0ab]"
+                    >
                         Política de privacidad
-                    </a>
+                    </Link>
 
-                    <a href="#" className="transition hover:text-[#83a0ab]">
+                    <Link
+                        href="/terminos-y-condiciones"
+                        className="transition hover:text-[#83a0ab]"
+                    >
                         Términos y condiciones
-                    </a>
+                    </Link>
                 </div>
+            </div>
+
+            <div className="relative z-10 mx-auto mt-4 max-w-6xl text-xs leading-relaxed text-white/35">
+                La información publicada en este sitio es orientativa y no reemplaza
+                una consulta médica personalizada.
             </div>
         </footer>
     );

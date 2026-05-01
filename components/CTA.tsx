@@ -57,6 +57,7 @@ export default function CTA() {
         <section
             ref={sectionRef}
             className="relative overflow-hidden bg-[#f5f8f9] px-6 py-32 text-[#25373d]"
+            aria-labelledby="cta-title"
         >
             {/* BACKGROUND CLARO PREMIUM */}
             <div className="absolute inset-0 bg-[#f5f8f9]" />
@@ -80,20 +81,24 @@ export default function CTA() {
 
                 <div className="relative z-10">
                     <span className="mb-7 inline-flex items-center rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab]">
-                        Evaluación personalizada
+                        Consulta por WhatsApp
                     </span>
 
-                    <h2 className="mb-8 text-3xl font-semibold leading-[1.08] text-white md:text-6xl">
-                        Estás a un paso
+                    <h2
+                        id="cta-title"
+                        className="mb-8 text-3xl font-semibold leading-[1.08] text-white md:text-6xl"
+                    >
+                        Si lo estás pensando,
                         <br />
                         <span className="text-[#83a0ab]">
-                            de un cambio real.
+                            lo vemos en consulta.
                         </span>
                     </h2>
 
                     <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-white/72 md:text-lg">
-                        Hablemos de tu caso y evaluemos juntos la mejor opción para vos,
-                        con criterio médico, naturalidad y acompañamiento real.
+                        Hablemos de tu caso y evaluemos qué procedimiento de cirugía
+                        plástica puede adaptarse mejor a tus objetivos, con criterio
+                        médico, naturalidad y acompañamiento real.
                     </p>
 
                     <div className="mx-auto mb-10 grid max-w-2xl gap-3 text-left md:grid-cols-3">
@@ -130,6 +135,7 @@ export default function CTA() {
                         href="https://wa.me/5491124793160"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Consultar por WhatsApp con el Dr. Víctor Pugliese"
                         className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-10 py-5 text-sm font-medium tracking-[0.08em] text-[#25373d] shadow-[0_18px_50px_rgba(0,0,0,0.24)] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                     >
                         QUIERO CHATEAR CON EL DOCTOR

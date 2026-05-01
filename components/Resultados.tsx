@@ -9,11 +9,13 @@ const results = [
         before: "/images/antes1.jpg",
         after: "/images/despues1.jpg",
         label: "Caso 01",
+        procedure: "Cirugía plástica estética",
     },
     {
         before: "/images/antes2.jpg",
         after: "/images/despues2.jpg",
         label: "Caso 02",
+        procedure: "Resultado natural",
     },
 ];
 
@@ -85,33 +87,41 @@ export default function Resultados() {
     return (
         <section
             ref={sectionRef}
-            className="relative overflow-hidden bg-[#ffffff] py-24 px-6 text-[#25373d]"
+            className="relative overflow-hidden bg-[#ffffff] px-6 py-24 text-[#25373d]"
+            aria-labelledby="resultados-title"
         >
             {/* BACKGROUND PREMIUM CLARO */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.18),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.12),transparent_36%)]" />
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/50 to-transparent" />
 
-            <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="relative z-10 mx-auto max-w-6xl">
                 {/* TITULO */}
                 <div ref={titleRef} className="mb-16 text-center">
-                    <span className="inline-flex items-center rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580] mb-6">
+                    <span className="mb-6 inline-flex items-center rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
                         Resultados reales
                     </span>
 
-                    <h2 className="text-3xl md:text-5xl font-semibold mb-5 leading-[1.08]">
-                        Esto no es un filtro
+                    <h2
+                        id="resultados-title"
+                        className="mb-5 text-3xl font-semibold leading-[1.08] md:text-5xl"
+                    >
+                        Esto no es un filtro.
+                        <br />
+                        <span className="text-[#567580]">
+                            Son resultados antes y después.
+                        </span>
                     </h2>
 
-                    <p className="text-base md:text-lg text-[#506065] max-w-2xl mx-auto leading-relaxed">
-                        Son cambios reales, planificados con criterio médico,
-                        naturalidad y acompañamiento profesional.
+                    <p className="mx-auto max-w-2xl text-base leading-relaxed text-[#506065] md:text-lg">
+                        Casos reales de cirugía plástica estética, planificados con
+                        criterio médico, naturalidad y acompañamiento profesional.
                     </p>
                 </div>
 
                 {/* GRID */}
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid gap-8 md:grid-cols-2">
                     {results.map((item, index) => (
-                        <div
+                        <article
                             key={item.label}
                             ref={(el) => {
                                 if (el) imagesRef.current[index] = el;
@@ -121,9 +131,14 @@ export default function Resultados() {
                             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/70 to-transparent" />
 
                             <div className="mb-4 flex items-center justify-between px-2 pt-2">
-                                <span className="text-xs font-medium uppercase tracking-[0.24em] text-[#6b8994]">
-                                    {item.label}
-                                </span>
+                                <div>
+                                    <span className="block text-xs font-medium uppercase tracking-[0.24em] text-[#6b8994]">
+                                        {item.label}
+                                    </span>
+                                    <span className="mt-1 block text-xs text-[#506065]/70">
+                                        {item.procedure}
+                                    </span>
+                                </div>
 
                                 <span className="rounded-full border border-[#83a0ab]/45 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-[#567580]">
                                     Antes / Después
@@ -135,13 +150,13 @@ export default function Resultados() {
                                 <div className="relative overflow-hidden rounded-[1.4rem] bg-[#25373d]">
                                     <img
                                         src={item.before}
-                                        alt={`${item.label} antes`}
+                                        alt={`${item.label} - antes del procedimiento de cirugía plástica`}
                                         className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
                                     />
 
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#25373d]/55 via-transparent to-transparent" />
 
-                                    <span className="absolute left-4 bottom-4 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#25373d]">
+                                    <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#25373d]">
                                         Antes
                                     </span>
                                 </div>
@@ -150,18 +165,18 @@ export default function Resultados() {
                                 <div className="relative overflow-hidden rounded-[1.4rem] bg-[#25373d]">
                                     <img
                                         src={item.after}
-                                        alt={`${item.label} después`}
+                                        alt={`${item.label} - después del procedimiento con resultado natural`}
                                         className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
                                     />
 
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#25373d]/55 via-transparent to-transparent" />
 
-                                    <span className="absolute left-4 bottom-4 rounded-full bg-[#83a0ab] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                                    <span className="absolute bottom-4 left-4 rounded-full bg-[#83a0ab] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                                         Después
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     ))}
                 </div>
 
@@ -172,18 +187,18 @@ export default function Resultados() {
                 >
                     <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
                         <div className="text-center md:text-left">
-                            <p className="text-sm uppercase tracking-[0.22em] text-[#83a0ab] mb-2">
+                            <p className="mb-2 text-sm uppercase tracking-[0.22em] text-[#83a0ab]">
                                 Evaluación responsable
                             </p>
 
-                            <h3 className="text-2xl font-semibold mb-2">
+                            <h3 className="mb-2 text-2xl font-semibold">
                                 Cada resultado depende de una planificación personalizada.
                             </h3>
 
-                            <p className="text-sm leading-relaxed text-white/70 max-w-2xl">
+                            <p className="max-w-2xl text-sm leading-relaxed text-white/70">
                                 Las imágenes muestran casos reales. La evaluación médica es
-                                clave para definir qué resultado puede esperarse en cada
-                                paciente.
+                                clave para definir qué resultado puede esperarse según cada
+                                cuerpo, procedimiento y proceso de recuperación.
                             </p>
                         </div>
 
@@ -191,9 +206,10 @@ export default function Resultados() {
                             href="https://wa.me/5491124793160"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Consultar por WhatsApp sobre resultados y evaluación personalizada"
                             className="inline-flex shrink-0 items-center justify-center rounded-full border border-[#83a0ab] bg-white px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                         >
-                            QUIERO MI CAMBIO
+                            CONSULTAR MI CASO
                         </a>
                     </div>
                 </div>
