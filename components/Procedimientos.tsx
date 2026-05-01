@@ -1,30 +1,42 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const procedimientos = [
     {
-        title: "Liposucción",
-        eyebrow: "Definición corporal",
-        description:
-            "Procedimiento orientado a mejorar el contorno corporal con resultados naturales, proporcionales y pensados para tu armonía.",
-        href: "/abdomen",
-    },
-    {
         title: "Cirugía mamaria",
         eyebrow: "Forma, volumen y armonía",
         description:
-            "Aumento, reducción o levantamiento mamario con planificación personalizada según tu cuerpo, tus objetivos y tu evaluación médica.",
+            "Procedimiento orientado a mejorar la forma, el volumen y la armonía mamaria con una planificación personalizada según tu cuerpo y tus objetivos.",
         href: "/cirugia-mamaria",
+        cta: "Ver cirugía mamaria",
+    },
+    {
+        title: "Abdomen",
+        eyebrow: "Contorno corporal",
+        description:
+            "Cirugía de abdomen y abdominoplastia para mejorar la firmeza, el contorno y la armonía corporal después de cambios físicos importantes.",
+        href: "/abdomen",
+        cta: "Ver abdomen",
     },
     {
         title: "Glúteos",
         eyebrow: "Diseño corporal",
         description:
-            "Mejora de forma y volumen respetando la proporción corporal, buscando un resultado armónico y natural.",
+            "Cirugía de glúteos enfocada en mejorar forma, volumen y proporción corporal, buscando un resultado armónico y natural.",
         href: "/gluteos",
+        cta: "Ver glúteos",
+    },
+    {
+        title: "Rinoplastia",
+        eyebrow: "Armonía facial",
+        description:
+            "Cirugía de nariz pensada para mejorar la armonía facial y, en algunos casos, acompañar una mejora funcional de la respiración.",
+        href: "/rinoplastia",
+        cta: "Ver rinoplastia",
     },
 ];
 
@@ -68,7 +80,7 @@ export default function Procedimientos() {
                     {
                         opacity: 1,
                         y: 0,
-                        stagger: 0.25,
+                        stagger: 0.18,
                         ease: "none",
                     },
                     0.2
@@ -94,7 +106,8 @@ export default function Procedimientos() {
     return (
         <section
             ref={sectionRef}
-            className="relative overflow-hidden bg-[#25373d] py-24 px-6 text-white"
+            className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
+            aria-labelledby="procedimientos-title"
         >
             {/* BACKGROUND PREMIUM */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.24),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.28),transparent_32%)]" />
@@ -102,16 +115,17 @@ export default function Procedimientos() {
             <div className="absolute -right-28 top-20 h-80 w-80 rounded-full bg-[#83a0ab]/10 blur-3xl" />
             <div className="absolute -left-28 bottom-10 h-80 w-80 rounded-full bg-[#567580]/20 blur-3xl" />
 
-            <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="relative z-10 mx-auto max-w-6xl">
                 {/* TITULO */}
-                <div className="max-w-3xl mb-14">
-                    <span className="inline-flex items-center rounded-full border border-[#83a0ab]/35 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] mb-6">
+                <div className="mb-14 max-w-3xl">
+                    <span className="mb-6 inline-flex items-center rounded-full border border-[#83a0ab]/35 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab]">
                         Procedimientos
                     </span>
 
                     <h2
+                        id="procedimientos-title"
                         ref={titleRef}
-                        className="text-3xl md:text-5xl font-semibold leading-[1.08] text-white"
+                        className="text-3xl font-semibold leading-[1.08] text-white md:text-5xl"
                     >
                         Procedimientos destacados
                         <br />
@@ -120,22 +134,22 @@ export default function Procedimientos() {
                         </span>
                     </h2>
 
-                    <p className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-white/70">
-                        No hay cirugías estándar: cada caso requiere evaluación,
-                        planificación y acompañamiento profesional para lograr un
-                        resultado armónico.
+                    <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
+                        Cada cirugía plástica requiere evaluación, planificación y
+                        acompañamiento profesional para buscar un resultado armónico,
+                        seguro y coherente con tu cuerpo.
                     </p>
                 </div>
 
                 {/* GRID */}
-                <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                     {procedimientos.map((item, index) => (
-                        <div
+                        <article
                             key={item.title}
                             ref={(el) => {
                                 if (el) cardsRef.current[index] = el;
                             }}
-                            className="group relative min-h-[360px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 shadow-[0_25px_70px_rgba(0,0,0,0.18)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/70 hover:bg-white/[0.09]"
+                            className="group relative min-h-[390px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 shadow-[0_25px_70px_rgba(0,0,0,0.18)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/70 hover:bg-white/[0.09]"
                         >
                             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#506065] via-[#83a0ab] to-[#567580] opacity-70" />
                             <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#83a0ab]/10 blur-3xl transition group-hover:bg-[#83a0ab]/20" />
@@ -146,7 +160,10 @@ export default function Procedimientos() {
                                         0{index + 1}
                                     </span>
 
-                                    <span className="h-10 w-10 rounded-full border border-[#83a0ab]/35 bg-white/5 flex items-center justify-center text-[#83a0ab] transition group-hover:bg-[#83a0ab] group-hover:text-white">
+                                    <span
+                                        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white/5 text-[#83a0ab] transition group-hover:bg-[#83a0ab] group-hover:text-white"
+                                        aria-hidden="true"
+                                    >
                                         →
                                     </span>
                                 </div>
@@ -155,37 +172,41 @@ export default function Procedimientos() {
                                     {item.eyebrow}
                                 </p>
 
-                                <h3 className="text-2xl font-semibold mb-5 text-white">
+                                <h3 className="mb-5 text-2xl font-semibold text-white">
                                     {item.title}
                                 </h3>
 
-                                <p className="text-sm leading-relaxed text-white/68 mb-8">
+                                <p className="mb-8 text-sm leading-relaxed text-white/68">
                                     {item.description}
                                 </p>
 
                                 <div className="mt-auto">
-                                    <a
+                                    <Link
                                         href={item.href}
+                                        aria-label={`${item.cta} con el Dr. Víctor Pugliese`}
                                         className="inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:text-[#83a0ab]"
                                     >
-                                        Ver más
-                                        <span className="transition group-hover:translate-x-1">
+                                        {item.cta}
+                                        <span
+                                            className="transition group-hover:translate-x-1"
+                                            aria-hidden="true"
+                                        >
                                             →
                                         </span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     ))}
                 </div>
 
                 {/* CTA */}
                 <div
                     ref={ctaRef}
-                    className="mt-16 flex flex-col items-center justify-between gap-6 rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 md:flex-row md:p-8 backdrop-blur"
+                    className="mt-16 flex flex-col items-center justify-between gap-6 rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur md:flex-row md:p-8"
                 >
                     <div>
-                        <p className="text-sm uppercase tracking-[0.22em] text-[#83a0ab] mb-2">
+                        <p className="mb-2 text-sm uppercase tracking-[0.22em] text-[#83a0ab]">
                             Evaluación personalizada
                         </p>
                         <h3 className="text-2xl font-semibold text-white">
@@ -197,6 +218,7 @@ export default function Procedimientos() {
                         href="https://wa.me/5491124793160"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Consultar por WhatsApp qué procedimiento se adapta a mi caso"
                         className="inline-flex shrink-0 items-center justify-center rounded-full border border-[#83a0ab] bg-white px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                     >
                         CONTACTAR

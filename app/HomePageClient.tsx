@@ -8,16 +8,20 @@ import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <Filosofia />
-      <Procedimientos />
-      <Resultados />
-      <Testimonios />
-      <CTA />
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Navbar />
+
+            <main>
+                <Hero />
+                <Filosofia />
+                <Procedimientos />
+                <Resultados />
+                <Testimonios />
+                <CTA />
+            </main>
+
+            <Footer />
+        </>
+    );
 }

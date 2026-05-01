@@ -58,54 +58,63 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative h-screen flex items-center justify-center text-[#ffffff] overflow-hidden pt-20 bg-[#25373d]">
+        <section
+            className="relative flex h-screen items-center justify-center overflow-hidden bg-[#25373d] pt-20 text-[#ffffff]"
+            aria-labelledby="hero-title"
+        >
             {/* VIDEO BACKGROUND */}
             <video
-                className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.72] contrast-110 saturate-[0.85]"
+                className="absolute inset-0 h-full w-full scale-[1.02] object-cover grayscale blur-[1.5px] brightness-[0.82] contrast-90 saturate-0"
                 src="/videos/hero.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
                 preload="metadata"
+                aria-hidden="true"
             />
 
-            {/* OVERLAY PRINCIPAL DE MARCA */}
-            <div className="absolute inset-0 bg-[#25373d]/75" />
+            {/* OVERLAY SUAVE DE MARCA */}
+            <div className="absolute inset-0 bg-[#25373d]/42" />
 
-            {/* GRADIENT DE PROFUNDIDAD */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/85 via-[#25373d]/45 to-[#25373d]/95" />
+            {/* GRADIENT DE LECTURA */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/52 via-[#25373d]/20 to-[#25373d]/74" />
 
-            {/* LUZ SUAVE DE IDENTIDAD */}
-            <div className="absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#83a0ab]/20 blur-3xl" />
-            <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#567580]/25 blur-3xl" />
+            {/* VIÑETA LATERAL SUAVE */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#25373d]/28 via-transparent to-[#25373d]/28" />
+
+            {/* LUCES DE IDENTIDAD */}
+            <div className="absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#83a0ab]/14 blur-3xl" />
+            <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#567580]/16 blur-3xl" />
 
             {/* CONTENT */}
-            <div className="relative z-10 text-center px-6 max-w-4xl">
+            <div className="relative z-10 max-w-4xl px-6 text-center">
                 <span
                     ref={eyebrowRef}
-                    className="inline-block text-xs md:text-sm tracking-[0.35em] uppercase text-[#83a0ab] mb-6"
+                    className="mb-6 inline-block text-xs uppercase tracking-[0.35em] text-[#d7e4e8] md:text-sm"
                 >
                     Cirugía plástica · Resultados naturales
                 </span>
 
                 <h1
+                    id="hero-title"
                     ref={titleRef}
-                    className="text-4xl md:text-7xl font-semibold mb-8 leading-[1.05] text-[#ffffff]"
+                    className="mb-8 text-4xl font-semibold leading-[1.05] text-[#ffffff] drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)] md:text-7xl"
                 >
                     Más que una cirugía.
                     <br />
-                    <span className="text-[#83a0ab]">
+                    <span className="text-[#c7dce3]">
                         Un cambio real, acompañado.
                     </span>
                 </h1>
 
                 <p
                     ref={textRef}
-                    className="text-base md:text-lg text-[#ffffff]/80 mb-10 max-w-2xl mx-auto leading-relaxed"
+                    className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-[#ffffff]/88 drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] md:text-lg"
                 >
                     Evaluación personalizada, resultados naturales y acompañamiento real
-                    en cada etapa del proceso.
+                    en procedimientos como cirugía mamaria, rinoplastia, abdomen, glúteos
+                    y liposucción.
                 </p>
 
                 <a
@@ -113,14 +122,18 @@ export default function Hero() {
                     href="https://wa.me/5491124793160"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block rounded-full border border-[#83a0ab] bg-[#ffffff] px-8 py-4 text-sm font-medium tracking-wide text-[#25373d] shadow-[0_18px_45px_rgba(37,55,61,0.35)] transition hover:bg-[#83a0ab] hover:text-[#ffffff] hover:border-[#83a0ab] hover:-translate-y-0.5"
+                    aria-label="Reservar consulta por WhatsApp con el Dr. Víctor Pugliese"
+                    className="inline-block rounded-full border border-[#ffffff]/80 bg-[#ffffff] px-8 py-4 text-sm font-medium tracking-wide text-[#25373d] shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:border-[#83a0ab] hover:bg-[#83a0ab] hover:text-[#ffffff]"
                 >
                     RESERVAR CONSULTA
                 </a>
             </div>
 
             {/* SCROLL INDICATOR */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#83a0ab] text-sm animate-bounce">
+            <div
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-sm text-[#d7e4e8]"
+                aria-hidden="true"
+            >
                 ↓
             </div>
         </section>
