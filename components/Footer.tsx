@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -11,13 +12,20 @@ export default function Footer() {
             <div className="relative z-10 mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
                 {/* MARCA */}
                 <div>
-                    <Link href="/" className="mb-5 inline-block">
-                        <span className="block text-xl font-semibold text-white">
-                            Dr. Víctor Pugliese
-                        </span>
-                        <span className="mt-1 block text-sm uppercase tracking-[0.18em] text-[#83a0ab]">
-                            Cirujano Plástico
-                        </span>
+                    <Link
+                        href="/"
+                        aria-label="Ir al inicio"
+                        className="mb-6 inline-flex items-center"
+                    >
+                        <div className="relative h-16 w-[230px] brightness-0 invert md:h-20 md:w-[280px]">
+                            <Image
+                                src="/images/logo-victor-pugliese.png"
+                                alt="Dr. Víctor Pugliese - Cirujano Plástico"
+                                fill
+                                sizes="(max-width: 768px) 230px, 280px"
+                                className="object-contain object-left"
+                            />
+                        </div>
                     </Link>
 
                     <p className="max-w-xs text-sm leading-relaxed text-white/65">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -59,33 +60,37 @@ export default function Navbar() {
         return pathname === href || pathname.startsWith(`${href}/`);
     };
 
+    const navbarIsSolid = scrolled || menuOpen;
+
     return (
         <header
-            className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${scrolled || menuOpen
+            className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${navbarIsSolid
                     ? "border-b border-[#25373d]/10 bg-white/92 text-[#25373d] shadow-[0_12px_35px_rgba(37,55,61,0.08)] backdrop-blur-xl"
                     : "bg-transparent text-white"
                 }`}
         >
             <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
                 {/* LOGO */}
-                <Link href="/" className="group inline-flex flex-col">
-                    <span
-                        className={`text-lg font-semibold leading-tight transition ${scrolled || menuOpen
-                                ? "text-[#25373d]"
-                                : "text-white"
+                <Link
+                    href="/"
+                    aria-label="Ir al inicio"
+                    className="relative z-10 inline-flex items-center"
+                >
+                    <div
+                        className={`relative h-12 w-[185px] transition-all duration-300 md:h-14 md:w-[220px] ${navbarIsSolid
+                                ? "brightness-100"
+                                : "brightness-0 invert"
                             }`}
                     >
-                        Dr. Víctor Pugliese
-                    </span>
-
-                    <span
-                        className={`mt-1 text-xs uppercase tracking-[0.18em] transition ${scrolled || menuOpen
-                                ? "text-[#6b8994]"
-                                : "text-white/70"
-                            }`}
-                    >
-                        Cirujano Plástico
-                    </span>
+                        <Image
+                            src="/images/logo-victor-pugliese.png"
+                            alt="Dr. Víctor Pugliese - Cirujano Plástico"
+                            fill
+                            priority
+                            sizes="(max-width: 768px) 185px, 220px"
+                            className="object-contain object-left"
+                        />
+                    </div>
                 </Link>
 
                 {/* DESKTOP NAV */}
@@ -99,10 +104,10 @@ export default function Navbar() {
                                 href={item.href}
                                 aria-current={isActive ? "page" : undefined}
                                 className={`relative rounded-full px-4 py-2 transition-all duration-300 ${isActive
-                                        ? scrolled || menuOpen
+                                        ? navbarIsSolid
                                             ? "bg-[#25373d] text-white shadow-[0_10px_25px_rgba(37,55,61,0.16)]"
                                             : "bg-white text-[#25373d] shadow-[0_10px_25px_rgba(0,0,0,0.16)]"
-                                        : scrolled || menuOpen
+                                        : navbarIsSolid
                                             ? "text-[#506065] hover:bg-[#f5f8f9] hover:text-[#25373d]"
                                             : "text-white/72 hover:bg-white/10 hover:text-white"
                                     }`}
@@ -111,7 +116,7 @@ export default function Navbar() {
 
                                 {isActive && (
                                     <span
-                                        className={`absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full ${scrolled || menuOpen
+                                        className={`absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full ${navbarIsSolid
                                                 ? "bg-[#83a0ab]"
                                                 : "bg-[#25373d]"
                                             }`}
@@ -127,7 +132,7 @@ export default function Navbar() {
                     href="https://wa.me/5491124793160"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`hidden rounded-full border px-5 py-3 text-sm font-medium tracking-[0.04em] transition-all duration-300 md:inline-flex ${scrolled || menuOpen
+                    className={`hidden rounded-full border px-5 py-3 text-sm font-medium tracking-[0.04em] transition-all duration-300 md:inline-flex ${navbarIsSolid
                             ? "border-[#25373d] bg-[#25373d] text-white hover:-translate-y-0.5 hover:bg-[#506065]"
                             : "border-white/70 bg-white text-[#25373d] hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                         }`}
@@ -151,7 +156,7 @@ export default function Navbar() {
                         <span
                             className={`absolute left-0 top-0 h-[2px] w-6 transition-all ${menuOpen
                                     ? "translate-y-[7px] rotate-45 bg-[#25373d]"
-                                    : scrolled
+                                    : navbarIsSolid
                                         ? "bg-[#25373d]"
                                         : "bg-white"
                                 }`}
@@ -160,7 +165,7 @@ export default function Navbar() {
                         <span
                             className={`absolute left-0 top-[7px] h-[2px] w-6 transition-all ${menuOpen
                                     ? "opacity-0 bg-[#25373d]"
-                                    : scrolled
+                                    : navbarIsSolid
                                         ? "bg-[#25373d]"
                                         : "bg-white"
                                 }`}
@@ -169,7 +174,7 @@ export default function Navbar() {
                         <span
                             className={`absolute bottom-0 left-0 h-[2px] w-6 transition-all ${menuOpen
                                     ? "-translate-y-[7px] -rotate-45 bg-[#25373d]"
-                                    : scrolled
+                                    : navbarIsSolid
                                         ? "bg-[#25373d]"
                                         : "bg-white"
                                 }`}
