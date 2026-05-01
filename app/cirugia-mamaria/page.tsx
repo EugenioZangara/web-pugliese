@@ -15,7 +15,7 @@ export default function CirugiaMamariaPage() {
 
     const infoContentRef = useRef<HTMLDivElement | null>(null);
     const resultImagesRef = useRef<HTMLDivElement[]>([]);
-    const testimoniosItemsRef = useRef<HTMLDivElement[]>([]);
+    const testimoniosTitleRef = useRef<HTMLDivElement | null>(null);
     const ctaContentRef = useRef<HTMLDivElement | null>(null);
 
     const testimonios = [
@@ -24,7 +24,12 @@ export default function CirugiaMamariaPage() {
         "El acompañamiento fue clave para llegar tranquila a la cirugía.",
         "Después del embarazo quería volver a sentirme cómoda con mi cuerpo.",
         "Me explicó todo con claridad y sin prometer cosas exageradas.",
+        "El seguimiento después de la cirugía fue excelente.",
+        "Sentí mucha confianza desde la primera evaluación.",
+        "El resultado se ve natural y acorde a mi cuerpo.",
     ];
+
+    const testimoniosLoop = [...testimonios, ...testimonios];
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -50,9 +55,9 @@ export default function CirugiaMamariaPage() {
                     ease: "none",
                     scrollTrigger: {
                         trigger: infoRef.current,
-                        start: "top 85%",
-                        end: "top 35%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
@@ -68,26 +73,25 @@ export default function CirugiaMamariaPage() {
                     ease: "none",
                     scrollTrigger: {
                         trigger: resultadosRef.current,
-                        start: "top 85%",
-                        end: "top 25%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
 
             gsap.fromTo(
-                testimoniosItemsRef.current,
-                { opacity: 0, x: 90 },
+                testimoniosTitleRef.current,
+                { opacity: 0, y: 70 },
                 {
                     opacity: 1,
-                    x: 0,
-                    stagger: 0.15,
+                    y: 0,
                     ease: "none",
                     scrollTrigger: {
                         trigger: testimoniosRef.current,
-                        start: "top 85%",
-                        end: "top 35%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
@@ -101,9 +105,9 @@ export default function CirugiaMamariaPage() {
                     ease: "none",
                     scrollTrigger: {
                         trigger: ctaRef.current,
-                        start: "top 85%",
-                        end: "top 35%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
@@ -117,7 +121,7 @@ export default function CirugiaMamariaPage() {
             <Navbar />
 
             <main className="bg-[#ffffff] text-[#25373d]">
-                {/* HERO */}
+                {/* HERO - OSCURO */}
                 <section
                     ref={heroRef}
                     className="relative flex min-h-screen items-center overflow-hidden bg-[#25373d] px-6 pt-28 text-white"
@@ -171,7 +175,7 @@ export default function CirugiaMamariaPage() {
                     </div>
                 </section>
 
-                {/* PROBLEMA / SOLUCIÓN */}
+                {/* INFO - CLARO */}
                 <section
                     ref={infoRef}
                     className="relative overflow-hidden bg-[#f5f8f9] px-6 py-24 text-[#25373d]"
@@ -248,7 +252,7 @@ export default function CirugiaMamariaPage() {
                     </div>
                 </section>
 
-                {/* RESULTADOS */}
+                {/* RESULTADOS - BLANCO */}
                 <section
                     ref={resultadosRef}
                     className="relative overflow-hidden bg-white px-6 py-24 text-[#25373d]"
@@ -308,7 +312,7 @@ export default function CirugiaMamariaPage() {
                     </div>
                 </section>
 
-                {/* TESTIMONIOS */}
+                {/* TESTIMONIOS - OSCURO CON MARQUEE INFINITO */}
                 <section
                     ref={testimoniosRef}
                     className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
@@ -322,7 +326,7 @@ export default function CirugiaMamariaPage() {
                     <div className="absolute -bottom-40 left-1/3 h-[420px] w-[420px] rounded-full bg-[#567580]/14 blur-3xl" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
-                        <div className="mb-12 max-w-3xl">
+                        <div ref={testimoniosTitleRef} className="mb-12 max-w-3xl">
                             <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
                                 Experiencias reales
                             </span>
@@ -341,47 +345,50 @@ export default function CirugiaMamariaPage() {
                             </p>
                         </div>
 
-                        <div className="flex gap-6 overflow-x-auto pb-5 pr-6 [scrollbar-width:thin] [scrollbar-color:#83a0ab_transparent]">
-                            {testimonios.map((texto, index) => (
-                                <div
-                                    key={index}
-                                    ref={(el) => {
-                                        if (el) testimoniosItemsRef.current[index] = el;
-                                    }}
-                                    className="group relative min-w-[280px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.055] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white/[0.085] md:min-w-[340px]"
-                                >
-                                    <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/55 to-transparent" />
-                                    <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/10 blur-3xl transition group-hover:bg-[#83a0ab]/18" />
+                        <div className="relative -mx-6 overflow-hidden">
+                            <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-[#25373d] to-transparent" />
+                            <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-[#25373d] to-transparent" />
 
-                                    <div className="relative z-10">
-                                        <div className="mb-8 flex items-center justify-between">
-                                            <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#83a0ab]">
-                                                Paciente 0{index + 1}
-                                            </span>
+                            <div className="flex w-max animate-[testimonialMarquee_46s_linear_infinite] gap-6 pr-6 hover:[animation-play-state:paused]">
+                                {testimoniosLoop.map((texto, index) => (
+                                    <div
+                                        key={`${texto}-${index}`}
+                                        aria-hidden={index >= testimonios.length}
+                                        className="group relative w-[280px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.055] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white/[0.085] md:w-[340px]"
+                                    >
+                                        <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/55 to-transparent" />
+                                        <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/10 blur-3xl transition group-hover:bg-[#83a0ab]/18" />
 
-                                            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/20 bg-white/[0.06] text-2xl leading-none text-[#83a0ab]">
-                                                ”
-                                            </span>
-                                        </div>
+                                        <div className="relative z-10">
+                                            <div className="mb-8 flex items-center justify-between">
+                                                <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#83a0ab]">
+                                                    Paciente 0{(index % testimonios.length) + 1}
+                                                </span>
 
-                                        <p className="text-base leading-relaxed text-white/86">
-                                            “{texto}”
-                                        </p>
+                                                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/20 bg-white/[0.06] text-2xl leading-none text-[#83a0ab]">
+                                                    ”
+                                                </span>
+                                            </div>
 
-                                        <div className="mt-8 flex items-center gap-2">
-                                            <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
-                                            <span className="text-xs uppercase tracking-[0.18em] text-white/55">
-                                                Acompañamiento real
-                                            </span>
+                                            <p className="text-base leading-relaxed text-white/86">
+                                                “{texto}”
+                                            </p>
+
+                                            <div className="mt-8 flex items-center gap-2">
+                                                <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
+                                                <span className="text-xs uppercase tracking-[0.18em] text-white/55">
+                                                    Acompañamiento real
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                {/* CTA */}
+                {/* CTA - CLARO CON TARJETA OSCURA */}
                 <section
                     ref={ctaRef}
                     className="relative overflow-hidden bg-[#f5f8f9] px-6 py-32 text-[#25373d]"
@@ -427,6 +434,17 @@ export default function CirugiaMamariaPage() {
             </main>
 
             <Footer />
+
+            <style jsx global>{`
+                @keyframes testimonialMarquee {
+                    from {
+                        transform: translateX(0);
+                    }
+                    to {
+                        transform: translateX(calc(-50% - 12px));
+                    }
+                }
+            `}</style>
         </>
     );
 }
