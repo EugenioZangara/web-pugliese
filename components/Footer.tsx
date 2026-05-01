@@ -17,12 +17,12 @@ export default function Footer() {
                         aria-label="Ir al inicio"
                         className="mb-6 inline-flex items-center"
                     >
-                        <div className="relative h-16 w-[230px] brightness-0 invert md:h-20 md:w-[280px]">
+                        <div className="relative h-20 w-[285px] brightness-0 invert md:h-24 md:w-[350px]">
                             <Image
                                 src="/images/logo-victor-pugliese.png"
                                 alt="Dr. Víctor Pugliese - Cirujano Plástico"
                                 fill
-                                sizes="(max-width: 768px) 230px, 280px"
+                                sizes="(max-width: 768px) 285px, 350px"
                                 className="object-contain object-left"
                             />
                         </div>

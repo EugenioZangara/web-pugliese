@@ -71,13 +71,15 @@ export default function Navbar() {
         >
             <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
                 {/* LOGO */}
+                {/* LOGO */}
+                {/* LOGO */}
                 <Link
                     href="/"
                     aria-label="Ir al inicio"
                     className="relative z-10 inline-flex items-center"
                 >
                     <div
-                        className={`relative h-12 w-[185px] transition-all duration-300 md:h-14 md:w-[220px] ${navbarIsSolid
+                        className={`relative h-16 w-[245px] transition-all duration-300 md:h-20 md:w-[310px] ${navbarIsSolid
                                 ? "brightness-100"
                                 : "brightness-0 invert"
                             }`}
@@ -87,7 +89,7 @@ export default function Navbar() {
                             alt="Dr. Víctor Pugliese - Cirujano Plástico"
                             fill
                             priority
-                            sizes="(max-width: 768px) 185px, 220px"
+                            sizes="(max-width: 768px) 245px, 310px"
                             className="object-contain object-left"
                         />
                     </div>
