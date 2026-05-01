@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://dr-victor-pugliese.vercel.app";
+const rawSiteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://web-pugliese.vercel.app";
+
+const siteUrl = rawSiteUrl.replace(/\/$/, "");
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const routes = [
