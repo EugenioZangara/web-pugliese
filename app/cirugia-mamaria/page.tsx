@@ -19,14 +19,42 @@ export default function CirugiaMamariaPage() {
     const ctaContentRef = useRef<HTMLDivElement | null>(null);
 
     const testimonios = [
-        "Me ayudó a entender qué resultado era posible para mi cuerpo.",
-        "Buscaba algo natural y me sentí escuchada desde la primera consulta.",
-        "El acompañamiento fue clave para llegar tranquila a la cirugía.",
-        "Después del embarazo quería volver a sentirme cómoda con mi cuerpo.",
-        "Me explicó todo con claridad y sin prometer cosas exageradas.",
-        "El seguimiento después de la cirugía fue excelente.",
-        "Sentí mucha confianza desde la primera evaluación.",
-        "El resultado se ve natural y acorde a mi cuerpo.",
+        {
+            image: "/images/testimonios/mamaria-1.jpg",
+            quote: "Me ayudó a entender qué resultado era posible para mi cuerpo.",
+            category: "Cirugía mamaria",
+            tag: "Evaluación personalizada",
+        },
+        {
+            image: "/images/testimonios/mamaria-2.jpg",
+            quote: "Buscaba algo natural y me sentí escuchada desde la primera consulta.",
+            category: "Resultado natural",
+            tag: "Naturalidad",
+        },
+        {
+            image: "/images/testimonios/mamaria-3.jpg",
+            quote: "El acompañamiento fue clave para llegar tranquila a la cirugía.",
+            category: "Acompañamiento",
+            tag: "Contención",
+        },
+        {
+            image: "/images/testimonios/mamaria-4.jpg",
+            quote: "Después del embarazo quería volver a sentirme cómoda con mi cuerpo.",
+            category: "Armonía corporal",
+            tag: "Confianza",
+        },
+        {
+            image: "/images/testimonios/mamaria-5.jpg",
+            quote: "Me explicó todo con claridad y sin prometer cosas exageradas.",
+            category: "Consulta inicial",
+            tag: "Claridad",
+        },
+        {
+            image: "/images/testimonios/mamaria-6.jpg",
+            quote: "El seguimiento después de la cirugía fue excelente.",
+            category: "Postoperatorio",
+            tag: "Seguimiento",
+        },
     ];
 
     const testimoniosLoop = [...testimonios, ...testimonios];
@@ -312,7 +340,7 @@ export default function CirugiaMamariaPage() {
                     </div>
                 </section>
 
-                {/* TESTIMONIOS - OSCURO CON MARQUEE INFINITO */}
+                {/* TESTIMONIOS - OSCURO CON MARQUEE INFINITO + IMÁGENES */}
                 <section
                     ref={testimoniosRef}
                     className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
@@ -343,41 +371,58 @@ export default function CirugiaMamariaPage() {
                                 La cirugía mamaria también implica confianza, claridad y un
                                 proceso acompañado desde la primera consulta.
                             </p>
+
+                            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/45">
+                                Imágenes ilustrativas del proceso de atención.
+                            </p>
                         </div>
 
                         <div className="relative -mx-6 overflow-hidden">
                             <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-[#25373d] to-transparent" />
                             <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-[#25373d] to-transparent" />
 
-                            <div className="flex w-max animate-[testimonialMarquee_46s_linear_infinite] gap-6 pr-6 hover:[animation-play-state:paused]">
-                                {testimoniosLoop.map((texto, index) => (
+                            <div className="flex w-max animate-[testimonialMarquee_48s_linear_infinite] gap-6 pr-6 hover:[animation-play-state:paused]">
+                                {testimoniosLoop.map((item, index) => (
                                     <div
-                                        key={`${texto}-${index}`}
+                                        key={`${item.quote}-${index}`}
                                         aria-hidden={index >= testimonios.length}
-                                        className="group relative w-[280px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.055] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white/[0.085] md:w-[340px]"
+                                        className="group relative w-[300px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.055] shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white/[0.085] md:w-[370px]"
                                     >
-                                        <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/55 to-transparent" />
-                                        <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/10 blur-3xl transition group-hover:bg-[#83a0ab]/18" />
+                                        <div className="relative h-48 overflow-hidden bg-[#25373d]">
+                                            <img
+                                                src={item.image}
+                                                alt="Imagen ilustrativa del proceso de atención"
+                                                className="h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-[1.04]"
+                                            />
 
-                                        <div className="relative z-10">
-                                            <div className="mb-8 flex items-center justify-between">
-                                                <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#83a0ab]">
-                                                    Paciente 0{(index % testimonios.length) + 1}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#25373d]/80 via-[#25373d]/20 to-transparent" />
+
+                                            <span className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-white backdrop-blur">
+                                                {item.tag}
+                                            </span>
+                                        </div>
+
+                                        <div className="relative p-7">
+                                            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/65 to-transparent" />
+
+                                            <div className="mb-6 flex items-center justify-between">
+                                                <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#83a0ab]">
+                                                    Testimonio real
                                                 </span>
 
-                                                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/20 bg-white/[0.06] text-2xl leading-none text-[#83a0ab]">
+                                                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/25 bg-white/[0.06] text-2xl leading-none text-[#83a0ab]">
                                                     ”
                                                 </span>
                                             </div>
 
-                                            <p className="text-base leading-relaxed text-white/86">
-                                                “{texto}”
+                                            <p className="min-h-[120px] text-base leading-relaxed text-white/86">
+                                                “{item.quote}”
                                             </p>
 
                                             <div className="mt-8 flex items-center gap-2">
                                                 <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
                                                 <span className="text-xs uppercase tracking-[0.18em] text-white/55">
-                                                    Acompañamiento real
+                                                    {item.category}
                                                 </span>
                                             </div>
                                         </div>
@@ -440,6 +485,7 @@ export default function CirugiaMamariaPage() {
                     from {
                         transform: translateX(0);
                     }
+
                     to {
                         transform: translateX(calc(-50% - 12px));
                     }

@@ -19,7 +19,7 @@ export default function GluteosPage() {
     const objetivosItemsRef = useRef<HTMLDivElement[]>([]);
     const procesoItemsRef = useRef<HTMLDivElement[]>([]);
     const resultImagesRef = useRef<HTMLDivElement[]>([]);
-    const testimoniosItemsRef = useRef<HTMLDivElement[]>([]);
+    const testimoniosTitleRef = useRef<HTMLDivElement | null>(null);
     const ctaContentRef = useRef<HTMLDivElement | null>(null);
 
     const objetivos = [
@@ -49,12 +49,44 @@ export default function GluteosPage() {
     ];
 
     const testimonios = [
-        "Buscaba mejorar la forma sin que se viera exagerado, y el resultado fue muy natural.",
-        "Me explicó qué podía lograrse en mi caso y eso me dio mucha seguridad.",
-        "Sentí acompañamiento en todo el proceso, especialmente después de la cirugía.",
-        "Quería verme más armónica, no cambiar por completo, y eso fue lo que logramos.",
-        "La evaluación me ayudó a entender cuál era la mejor opción para mi cuerpo.",
+        {
+            image: "/images/testimonios/testimonio-1.jpg",
+            quote:
+                "Buscaba mejorar la forma sin que se viera exagerado, y el resultado fue muy natural.",
+            category: "Cirugía de glúteos",
+            tag: "Naturalidad",
+        },
+        {
+            image: "/images/testimonios/testimonio-2.jpg",
+            quote:
+                "Me explicó qué podía lograrse en mi caso y eso me dio mucha seguridad.",
+            category: "Evaluación personalizada",
+            tag: "Confianza",
+        },
+        {
+            image: "/images/testimonios/testimonio-3.jpg",
+            quote:
+                "Sentí acompañamiento en todo el proceso, especialmente después de la cirugía.",
+            category: "Seguimiento",
+            tag: "Acompañamiento real",
+        },
+        {
+            image: "/images/testimonios/testimonio-4.jpg",
+            quote:
+                "Quería verme más armónica, no cambiar por completo, y eso fue lo que logramos.",
+            category: "Armonía corporal",
+            tag: "Resultado natural",
+        },
+        {
+            image: "/images/testimonios/testimonio-5.jpg",
+            quote:
+                "La evaluación me ayudó a entender cuál era la mejor opción para mi cuerpo.",
+            category: "Consulta inicial",
+            tag: "Claridad",
+        },
     ];
+
+    const testimoniosLoop = [...testimonios, ...testimonios];
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -140,12 +172,11 @@ export default function GluteosPage() {
             );
 
             gsap.fromTo(
-                testimoniosItemsRef.current,
-                { opacity: 0, x: 90 },
+                testimoniosTitleRef.current,
+                { opacity: 0, y: 70 },
                 {
                     opacity: 1,
-                    x: 0,
-                    stagger: 0.15,
+                    y: 0,
                     ease: "none",
                     scrollTrigger: {
                         trigger: testimoniosRef.current,
@@ -482,7 +513,7 @@ export default function GluteosPage() {
                     </div>
                 </section>
 
-                {/* TESTIMONIOS - CLARO */}
+                {/* TESTIMONIOS - CLARO CON MARQUEE INFINITO */}
                 <section
                     ref={testimoniosRef}
                     className="relative overflow-hidden bg-[#ffffff] px-6 py-24 text-[#25373d]"
@@ -493,7 +524,7 @@ export default function GluteosPage() {
                     <div className="absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-[#567580]/10 blur-3xl" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
-                        <div className="mb-12 max-w-3xl">
+                        <div ref={testimoniosTitleRef} className="mb-12 max-w-3xl">
                             <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
                                 Experiencias reales
                             </span>
@@ -510,44 +541,64 @@ export default function GluteosPage() {
                                 La cirugía de glúteos también requiere confianza, claridad y un
                                 proceso acompañado desde la primera consulta.
                             </p>
+
+                            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[#6b8994]">
+                                Imágenes ilustrativas del proceso de atención.
+                            </p>
                         </div>
 
-                        <div className="flex gap-6 overflow-x-auto pb-5 pr-6 [scrollbar-width:thin] [scrollbar-color:#83a0ab_transparent]">
-                            {testimonios.map((texto, index) => (
-                                <div
-                                    key={index}
-                                    ref={(el) => {
-                                        if (el) testimoniosItemsRef.current[index] = el;
-                                    }}
-                                    className="group relative min-w-[280px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] p-7 shadow-[0_24px_70px_rgba(37,55,61,0.1)] transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/70 hover:bg-white md:min-w-[340px]"
-                                >
-                                    <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/65 to-transparent" />
-                                    <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/12 blur-3xl transition group-hover:bg-[#83a0ab]/20" />
+                        <div className="relative -mx-6 overflow-hidden">
+                            <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-white to-transparent" />
+                            <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-white to-transparent" />
 
-                                    <div className="relative z-10">
-                                        <div className="mb-8 flex items-center justify-between">
-                                            <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#6b8994]">
-                                                Paciente 0{index + 1}
-                                            </span>
+                            <div className="flex w-max animate-[testimonialMarquee_48s_linear_infinite] gap-6 pr-6 hover:[animation-play-state:paused]">
+                                {testimoniosLoop.map((item, index) => (
+                                    <div
+                                        key={`${item.quote}-${index}`}
+                                        aria-hidden={index >= testimonios.length}
+                                        className="group relative w-[300px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] shadow-[0_24px_70px_rgba(37,55,61,0.1)] transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/70 hover:bg-white md:w-[370px]"
+                                    >
+                                        <div className="relative h-48 overflow-hidden bg-[#25373d]">
+                                            <img
+                                                src={item.image}
+                                                alt="Imagen ilustrativa del proceso de atención"
+                                                className="h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-[1.04]"
+                                            />
 
-                                            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white text-2xl leading-none text-[#83a0ab]">
-                                                ”
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#25373d]/75 via-[#25373d]/15 to-transparent" />
+
+                                            <span className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-white backdrop-blur">
+                                                {item.tag}
                                             </span>
                                         </div>
 
-                                        <p className="text-base leading-relaxed text-[#25373d]">
-                                            “{texto}”
-                                        </p>
+                                        <div className="relative p-7">
+                                            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/65 to-transparent" />
 
-                                        <div className="mt-8 flex items-center gap-2">
-                                            <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
-                                            <span className="text-xs uppercase tracking-[0.18em] text-[#506065]">
-                                                Acompañamiento real
-                                            </span>
+                                            <div className="mb-6 flex items-center justify-between">
+                                                <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#6b8994]">
+                                                    Testimonio real
+                                                </span>
+
+                                                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white text-2xl leading-none text-[#83a0ab]">
+                                                    ”
+                                                </span>
+                                            </div>
+
+                                            <p className="min-h-[120px] text-base leading-relaxed text-[#25373d]">
+                                                “{item.quote}”
+                                            </p>
+
+                                            <div className="mt-8 flex items-center gap-2">
+                                                <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
+                                                <span className="text-xs uppercase tracking-[0.18em] text-[#506065]">
+                                                    {item.category}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -602,6 +653,18 @@ export default function GluteosPage() {
             </main>
 
             <Footer />
+
+            <style jsx global>{`
+                @keyframes testimonialMarquee {
+                    from {
+                        transform: translateX(0);
+                    }
+
+                    to {
+                        transform: translateX(calc(-50% - 12px));
+                    }
+                }
+            `}</style>
         </>
     );
 }
