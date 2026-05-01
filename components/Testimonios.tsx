@@ -8,6 +8,8 @@ export default function Testimonios() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
     const itemsRef = useRef<HTMLDivElement[]>([]);
+    const trackRef = useRef<HTMLDivElement | null>(null);
+    const marqueeTweenRef = useRef<gsap.core.Tween | null>(null);
 
     const testimonios = [
         "Me sentí acompañada en todo el proceso, no solo en la cirugía.",
@@ -48,20 +50,39 @@ export default function Testimonios() {
                 itemsRef.current,
                 {
                     opacity: 0,
-                    x: 90,
+                    y: 40,
                 },
                 {
                     opacity: 1,
-                    x: 0,
-                    stagger: 0.15,
+                    y: 0,
+                    stagger: 0.08,
                     ease: "none",
                 },
                 0.2
             );
+
+            if (trackRef.current) {
+                marqueeTweenRef.current = gsap.to(trackRef.current, {
+                    xPercent: -50,
+                    duration: 42,
+                    ease: "none",
+                    repeat: -1,
+                });
+            }
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
+
+    const handleMouseEnter = () => {
+        marqueeTweenRef.current?.pause();
+    };
+
+    const handleMouseLeave = () => {
+        marqueeTweenRef.current?.resume();
+    };
+
+    const testimoniosDuplicados = [...testimonios, ...testimonios];
 
     return (
         <section
@@ -103,43 +124,55 @@ export default function Testimonios() {
                     </p>
                 </div>
 
-                {/* SCROLL */}
-                <div className="flex gap-6 overflow-x-auto pb-5 pr-6 [scrollbar-width:thin] [scrollbar-color:#83a0ab_transparent]">
-                    {testimonios.map((texto, index) => (
-                        <div
-                            key={index}
-                            ref={(el) => {
-                                if (el) itemsRef.current[index] = el;
-                            }}
-                            className="group relative min-w-[280px] md:min-w-[340px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.055] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white/[0.085]"
-                        >
-                            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/55 to-transparent" />
-                            <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/10 blur-3xl transition group-hover:bg-[#83a0ab]/18" />
+                {/* TESTIMONIOS AUTOMÁTICOS INFINITOS */}
+                <div
+                    className="relative overflow-hidden pb-5"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-20 bg-gradient-to-r from-[#25373d] to-transparent md:w-32" />
+                    <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-20 bg-gradient-to-l from-[#25373d] to-transparent md:w-32" />
 
-                            <div className="relative z-10">
-                                <div className="mb-8 flex items-center justify-between">
-                                    <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#83a0ab]">
-                                        Paciente 0{index + 1}
-                                    </span>
+                    <div
+                        ref={trackRef}
+                        className="flex w-max gap-6 will-change-transform"
+                    >
+                        {testimoniosDuplicados.map((texto, index) => (
+                            <div
+                                key={`${texto}-${index}`}
+                                ref={(el) => {
+                                    if (el) itemsRef.current[index] = el;
+                                }}
+                                className="group relative min-w-[280px] md:min-w-[340px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.055] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white/[0.085]"
+                            >
+                                <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/55 to-transparent" />
+                                <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/10 blur-3xl transition group-hover:bg-[#83a0ab]/18" />
 
-                                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/20 bg-white/[0.06] text-2xl leading-none text-[#83a0ab]">
-                                        ”
-                                    </span>
-                                </div>
+                                <div className="relative z-10">
+                                    <div className="mb-8 flex items-center justify-between">
+                                        <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#83a0ab]">
+                                            Paciente 0{(index % testimonios.length) + 1}
+                                        </span>
 
-                                <p className="text-base leading-relaxed text-white/86">
-                                    “{texto}”
-                                </p>
+                                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/20 bg-white/[0.06] text-2xl leading-none text-[#83a0ab]">
+                                            ”
+                                        </span>
+                                    </div>
 
-                                <div className="mt-8 flex items-center gap-2">
-                                    <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
-                                    <span className="text-xs uppercase tracking-[0.18em] text-white/55">
-                                        Acompañamiento real
-                                    </span>
+                                    <p className="text-base leading-relaxed text-white/86">
+                                        “{texto}”
+                                    </p>
+
+                                    <div className="mt-8 flex items-center gap-2">
+                                        <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
+                                        <span className="text-xs uppercase tracking-[0.18em] text-white/55">
+                                            Acompañamiento real
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
                 {/* NOTA INFERIOR */}
