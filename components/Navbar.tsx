@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navItems = [
     {
@@ -41,9 +41,9 @@ export default function Navbar() {
             setScrolled(window.scrollY > 20);
         };
 
-        window.addEventListener("scroll", handleScroll);
         handleScroll();
 
+        window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -51,19 +51,37 @@ export default function Navbar() {
         setMenuOpen(false);
     }, [pathname]);
 
+    const isActivePath = (href: string) => {
+        if (href === "/") {
+            return pathname === "/";
+        }
+
+        return pathname === href || pathname.startsWith(`${href}/`);
+    };
+
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || menuOpen
-                    ? "bg-white/90 backdrop-blur-md border-b border-gray-200 text-black"
-                    : "bg-black/20 backdrop-blur-sm text-white"
+            className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${scrolled || menuOpen
+                    ? "border-b border-[#25373d]/10 bg-white/92 text-[#25373d] shadow-[0_12px_35px_rgba(37,55,61,0.08)] backdrop-blur-xl"
+                    : "bg-transparent text-white"
                 }`}
         >
-            <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
                 {/* LOGO */}
-                <Link href="/" className="flex flex-col leading-tight">
-                    <span className="text-lg font-semibold">Dr. Víctor Pugliese</span>
+                <Link href="/" className="group inline-flex flex-col">
                     <span
-                        className={`text-xs transition ${scrolled || menuOpen ? "text-gray-500" : "text-white/70"
+                        className={`text-lg font-semibold leading-tight transition ${scrolled || menuOpen
+                                ? "text-[#25373d]"
+                                : "text-white"
+                            }`}
+                    >
+                        Dr. Víctor Pugliese
+                    </span>
+
+                    <span
+                        className={`mt-1 text-xs uppercase tracking-[0.18em] transition ${scrolled || menuOpen
+                                ? "text-[#6b8994]"
+                                : "text-white/70"
                             }`}
                     >
                         Cirujano Plástico
@@ -71,22 +89,34 @@ export default function Navbar() {
                 </Link>
 
                 {/* DESKTOP NAV */}
-                <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+                <nav className="hidden items-center gap-2 text-sm font-medium md:flex">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href;
+                        const isActive = isActivePath(item.href);
 
                         return (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`transition ${isActive
-                                        ? scrolled
-                                            ? "text-black font-semibold"
-                                            : "text-white font-semibold"
-                                        : "opacity-70 hover:opacity-100"
+                                aria-current={isActive ? "page" : undefined}
+                                className={`relative rounded-full px-4 py-2 transition-all duration-300 ${isActive
+                                        ? scrolled || menuOpen
+                                            ? "bg-[#25373d] text-white shadow-[0_10px_25px_rgba(37,55,61,0.16)]"
+                                            : "bg-white text-[#25373d] shadow-[0_10px_25px_rgba(0,0,0,0.16)]"
+                                        : scrolled || menuOpen
+                                            ? "text-[#506065] hover:bg-[#f5f8f9] hover:text-[#25373d]"
+                                            : "text-white/72 hover:bg-white/10 hover:text-white"
                                     }`}
                             >
                                 {item.label}
+
+                                {isActive && (
+                                    <span
+                                        className={`absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full ${scrolled || menuOpen
+                                                ? "bg-[#83a0ab]"
+                                                : "bg-[#25373d]"
+                                            }`}
+                                    />
+                                )}
                             </Link>
                         );
                     })}
@@ -96,9 +126,10 @@ export default function Navbar() {
                 <a
                     href="https://wa.me/5491124793160"
                     target="_blank"
-                    className={`hidden md:inline-block px-4 py-2 rounded-full text-sm font-medium transition ${scrolled
-                            ? "bg-green-600 text-white hover:bg-green-700"
-                            : "bg-white text-black hover:bg-gray-200"
+                    rel="noopener noreferrer"
+                    className={`hidden rounded-full border px-5 py-3 text-sm font-medium tracking-[0.04em] transition-all duration-300 md:inline-flex ${scrolled || menuOpen
+                            ? "border-[#25373d] bg-[#25373d] text-white hover:-translate-y-0.5 hover:bg-[#506065]"
+                            : "border-white/70 bg-white text-[#25373d] hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                         }`}
                 >
                     WhatsApp
@@ -109,7 +140,8 @@ export default function Navbar() {
                     type="button"
                     onClick={() => setMenuOpen((prev) => !prev)}
                     aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-                    className="md:hidden flex h-10 w-10 items-center justify-center"
+                    aria-expanded={menuOpen}
+                    className="flex h-10 w-10 items-center justify-center md:hidden"
                 >
                     <span className="sr-only">
                         {menuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -118,27 +150,27 @@ export default function Navbar() {
                     <span className="relative block h-4 w-6">
                         <span
                             className={`absolute left-0 top-0 h-[2px] w-6 transition-all ${menuOpen
-                                    ? "translate-y-[7px] rotate-45 bg-black"
+                                    ? "translate-y-[7px] rotate-45 bg-[#25373d]"
                                     : scrolled
-                                        ? "bg-black"
+                                        ? "bg-[#25373d]"
                                         : "bg-white"
                                 }`}
                         />
 
                         <span
                             className={`absolute left-0 top-[7px] h-[2px] w-6 transition-all ${menuOpen
-                                    ? "opacity-0 bg-black"
+                                    ? "opacity-0 bg-[#25373d]"
                                     : scrolled
-                                        ? "bg-black"
+                                        ? "bg-[#25373d]"
                                         : "bg-white"
                                 }`}
                         />
 
                         <span
-                            className={`absolute left-0 bottom-0 h-[2px] w-6 transition-all ${menuOpen
-                                    ? "-translate-y-[7px] -rotate-45 bg-black"
+                            className={`absolute bottom-0 left-0 h-[2px] w-6 transition-all ${menuOpen
+                                    ? "-translate-y-[7px] -rotate-45 bg-[#25373d]"
                                     : scrolled
-                                        ? "bg-black"
+                                        ? "bg-[#25373d]"
                                         : "bg-white"
                                 }`}
                         />
@@ -148,21 +180,30 @@ export default function Navbar() {
 
             {/* MOBILE MENU */}
             <div
-                className={`md:hidden overflow-hidden bg-white text-black transition-all duration-300 ${menuOpen ? "max-h-[520px] border-t border-gray-200" : "max-h-0"
+                className={`overflow-hidden bg-white text-[#25373d] transition-all duration-300 md:hidden ${menuOpen
+                        ? "max-h-[560px] border-t border-[#25373d]/10"
+                        : "max-h-0"
                     }`}
             >
-                <nav className="px-6 py-6 flex flex-col gap-5 text-base font-medium">
+                <nav className="flex flex-col gap-2 px-6 py-6 text-base font-medium">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href;
+                        const isActive = isActivePath(item.href);
 
                         return (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`transition ${isActive ? "font-semibold text-black" : "text-gray-500"
+                                aria-current={isActive ? "page" : undefined}
+                                className={`flex items-center justify-between rounded-2xl px-4 py-3 transition ${isActive
+                                        ? "bg-[#25373d] text-white shadow-[0_12px_30px_rgba(37,55,61,0.14)]"
+                                        : "text-[#506065] hover:bg-[#f5f8f9] hover:text-[#25373d]"
                                     }`}
                             >
-                                {item.label}
+                                <span>{item.label}</span>
+
+                                {isActive && (
+                                    <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
+                                )}
                             </Link>
                         );
                     })}
@@ -170,7 +211,8 @@ export default function Navbar() {
                     <a
                         href="https://wa.me/5491124793160"
                         target="_blank"
-                        className="mt-2 inline-block w-fit rounded-full bg-green-600 px-5 py-3 text-sm font-medium text-white"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex w-fit items-center justify-center rounded-full border border-[#25373d] bg-[#25373d] px-5 py-3 text-sm font-medium tracking-[0.04em] text-white transition hover:bg-[#506065]"
                     >
                         WhatsApp
                     </a>

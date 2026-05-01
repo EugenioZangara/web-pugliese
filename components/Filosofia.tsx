@@ -36,49 +36,128 @@ export default function Filosofia() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="bg-black text-white py-24 px-6">
+        <section
+            ref={sectionRef}
+            className="relative overflow-hidden bg-[#f5f8f9] py-24 px-6 text-[#25373d]"
+        >
+            {/* DECORATIVE BACKGROUNDS */}
+            <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-[#83a0ab]/20 blur-3xl" />
+            <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#567580]/15 blur-3xl" />
+
             <div
                 ref={contentRef}
-                className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center"
+                className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"
             >
                 {/* TEXTO */}
                 <div>
-                    <h2 className="text-3xl md:text-4xl font-semibold mb-8">
+                    <span className="inline-flex items-center rounded-full border border-[#83a0ab]/40 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-[#567580] shadow-sm mb-6">
+                        Filosofía de trabajo
+                    </span>
+
+                    <h2 className="text-3xl md:text-5xl font-semibold mb-6 leading-[1.08]">
                         Más que una cirugía.
                         <br />
-                        <span className="text-gray-400">
+                        <span className="text-[#567580]">
                             Una forma de acompañarte.
                         </span>
                     </h2>
 
-                    <ul className="space-y-4 text-gray-300 text-base">
-                        <li>• Procedimientos seguros, con criterio médico profesional</li>
+                    <p className="text-base md:text-lg text-[#506065] leading-relaxed max-w-xl mb-8">
+                        Cada procedimiento se piensa desde un enfoque humano,
+                        profesional y personalizado, priorizando seguridad,
+                        naturalidad y acompañamiento real en todo el proceso.
+                    </p>
 
-                        <li>
-                            • Acompañamiento completo y personalizado en todo el proceso
-                        </li>
+                    <div className="space-y-4">
+                        <div className="rounded-2xl border border-[#25373d]/10 bg-white p-5 shadow-[0_15px_40px_rgba(37,55,61,0.08)]">
+                            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#6b8994] mb-2">
+                                01 · Seguridad
+                            </p>
+                            <p className="text-[#25373d] leading-relaxed">
+                                Procedimientos seguros, con criterio médico profesional.
+                            </p>
+                        </div>
 
-                        <li>
-                            • Asesoramiento integral para pacientes del interior
-                            <br />
-                            <span className="text-gray-500 text-sm">
-                                (estadía, traslado y cuidado postoperatorio)
-                            </span>
-                        </li>
+                        <div className="rounded-2xl border border-[#25373d]/10 bg-white p-5 shadow-[0_15px_40px_rgba(37,55,61,0.08)]">
+                            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#6b8994] mb-2">
+                                02 · Acompañamiento
+                            </p>
+                            <p className="text-[#25373d] leading-relaxed">
+                                Acompañamiento completo y personalizado en todo el proceso.
+                            </p>
+                        </div>
 
-                        <li>• Resultados naturales, pensados para tu cuerpo</li>
-                    </ul>
+                        <div className="rounded-2xl border border-[#25373d]/10 bg-white p-5 shadow-[0_15px_40px_rgba(37,55,61,0.08)]">
+                            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#6b8994] mb-2">
+                                03 · Pacientes del interior
+                            </p>
+                            <p className="text-[#25373d] leading-relaxed">
+                                Asesoramiento integral para pacientes del interior.
+                            </p>
+                            <p className="text-sm text-[#506065] mt-2">
+                                Estadía, traslado y cuidado postoperatorio.
+                            </p>
+                        </div>
+
+                        <div className="rounded-2xl border border-[#25373d]/10 bg-white p-5 shadow-[0_15px_40px_rgba(37,55,61,0.08)]">
+                            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#6b8994] mb-2">
+                                04 · Naturalidad
+                            </p>
+                            <p className="text-[#25373d] leading-relaxed">
+                                Resultados naturales, pensados para tu cuerpo y tu armonía.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA PREMIUM */}
                 <div className="flex justify-center md:justify-end">
-                    <a
-                        href="https://wa.me/5491124793160"
-                        target="_blank"
-                        className="border border-white px-8 py-5 text-sm tracking-wide hover:bg-white hover:text-black transition"
-                    >
-                        QUIERO HABLAR CON EL DR
-                    </a>
+                    <div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-[#25373d] p-8 md:p-10 text-white shadow-[0_25px_70px_rgba(37,55,61,0.28)] relative overflow-hidden">
+                        <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-[#83a0ab]/20 blur-3xl" />
+                        <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-[#567580]/20 blur-3xl" />
+
+                        <div className="relative z-10">
+                            <span className="inline-flex rounded-full border border-[#83a0ab]/35 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#83a0ab] mb-6">
+                                Acompañamiento real
+                            </span>
+
+                            <h3 className="text-2xl md:text-3xl font-semibold leading-tight mb-4">
+                                Un cambio pensado
+                                <br />
+                                con criterio y contención.
+                            </h3>
+
+                            <p className="text-white/75 leading-relaxed mb-8">
+                                Si estás evaluando un procedimiento, podés recibir una
+                                orientación personalizada para entender qué opción se adapta
+                                mejor a tu caso.
+                            </p>
+
+                            <div className="space-y-3 mb-8">
+                                <div className="flex items-center gap-3 text-sm text-white/85">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#83a0ab]" />
+                                    Evaluación personalizada
+                                </div>
+                                <div className="flex items-center gap-3 text-sm text-white/85">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#83a0ab]" />
+                                    Resultados naturales
+                                </div>
+                                <div className="flex items-center gap-3 text-sm text-white/85">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#83a0ab]" />
+                                    Seguimiento profesional
+                                </div>
+                            </div>
+
+                            <a
+                                href="https://wa.me/5491124793160"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex w-full items-center justify-center rounded-full border border-[#83a0ab] bg-white px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
+                            >
+                                QUIERO HABLAR CON EL DR
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

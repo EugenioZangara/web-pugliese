@@ -2,20 +2,25 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="bg-black text-white border-t border-white/10 px-6 py-14">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
+        <footer className="relative overflow-hidden bg-[#25373d] px-6 py-14 text-white">
+            {/* BACKGROUND SOBRIO */}
+            <div className="absolute inset-0 bg-[#25373d]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.16),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.14),transparent_34%)]" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
+
+            <div className="relative z-10 mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
                 {/* MARCA */}
                 <div>
-                    <Link href="/" className="inline-block mb-4">
-                        <span className="block text-xl font-semibold">
+                    <Link href="/" className="mb-5 inline-block">
+                        <span className="block text-xl font-semibold text-white">
                             Dr. Víctor Pugliese
                         </span>
-                        <span className="block text-sm text-gray-500">
+                        <span className="mt-1 block text-sm uppercase tracking-[0.18em] text-[#83a0ab]">
                             Cirujano Plástico
                         </span>
                     </Link>
 
-                    <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+                    <p className="max-w-xs text-sm leading-relaxed text-white/65">
                         Cirugía plástica con resultados naturales, evaluación personalizada
                         y acompañamiento real en todo el proceso.
                     </p>
@@ -23,35 +28,41 @@ export default function Footer() {
 
                 {/* NAVEGACIÓN */}
                 <div>
-                    <h3 className="text-sm uppercase tracking-[0.25em] text-gray-500 mb-5">
+                    <h3 className="mb-5 text-sm uppercase tracking-[0.25em] text-[#83a0ab]">
                         Navegación
                     </h3>
 
-                    <nav className="flex flex-col gap-3 text-sm text-gray-300">
-                        <Link href="/" className="hover:text-white transition">
+                    <nav className="flex flex-col gap-3 text-sm text-white/68">
+                        <Link href="/" className="transition hover:text-[#83a0ab]">
                             Home
                         </Link>
 
                         <Link
                             href="/cirugia-mamaria"
-                            className="hover:text-white transition"
+                            className="transition hover:text-[#83a0ab]"
                         >
                             Cirugía Mamaria
                         </Link>
 
-                        <Link href="/abdomen" className="hover:text-white transition">
+                        <Link href="/abdomen" className="transition hover:text-[#83a0ab]">
                             Abdomen
                         </Link>
 
-                        <Link href="/rinoplastia" className="hover:text-white transition">
+                        <Link
+                            href="/rinoplastia"
+                            className="transition hover:text-[#83a0ab]"
+                        >
                             Rinoplastía
                         </Link>
 
-                        <Link href="/gluteos" className="hover:text-white transition">
+                        <Link href="/gluteos" className="transition hover:text-[#83a0ab]">
                             Glúteos
                         </Link>
 
-                        <Link href="/quien-soy" className="hover:text-white transition">
+                        <Link
+                            href="/quien-soy"
+                            className="transition hover:text-[#83a0ab]"
+                        >
                             Quién soy
                         </Link>
                     </nav>
@@ -59,20 +70,21 @@ export default function Footer() {
 
                 {/* CONTACTO */}
                 <div>
-                    <h3 className="text-sm uppercase tracking-[0.25em] text-gray-500 mb-5">
+                    <h3 className="mb-5 text-sm uppercase tracking-[0.25em] text-[#83a0ab]">
                         Contacto
                     </h3>
 
-                    <div className="flex flex-col gap-4 text-sm text-gray-300">
+                    <div className="flex flex-col gap-4 text-sm text-white/68">
                         <a
                             href="https://wa.me/5491124793160"
                             target="_blank"
-                            className="hover:text-white transition"
+                            rel="noopener noreferrer"
+                            className="transition hover:text-[#83a0ab]"
                         >
                             WhatsApp: 11 2479-3160
                         </a>
 
-                        <p className="text-gray-500 leading-relaxed">
+                        <p className="max-w-xs leading-relaxed text-white/55">
                             Solicitá una evaluación personalizada para conocer la mejor opción
                             para tu caso.
                         </p>
@@ -80,7 +92,8 @@ export default function Footer() {
                         <a
                             href="https://wa.me/5491124793160"
                             target="_blank"
-                            className="inline-block w-fit border border-white px-5 py-3 text-xs tracking-wide hover:bg-white hover:text-black transition"
+                            rel="noopener noreferrer"
+                            className="inline-flex w-fit items-center justify-center rounded-full border border-[#83a0ab] bg-white px-6 py-3 text-xs font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                         >
                             RESERVAR CONSULTA
                         </a>
@@ -88,15 +101,15 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-xs text-gray-500">
+            <div className="relative z-10 mx-auto mt-12 flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
                 <p>© 2026 Dr. Víctor Pugliese. Todos los derechos reservados.</p>
 
                 <div className="flex gap-4">
-                    <a href="#" className="hover:text-white transition">
+                    <a href="#" className="transition hover:text-[#83a0ab]">
                         Política de privacidad
                     </a>
 
-                    <a href="#" className="hover:text-white transition">
+                    <a href="#" className="transition hover:text-[#83a0ab]">
                         Términos y condiciones
                     </a>
                 </div>

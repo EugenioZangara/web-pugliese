@@ -6,17 +6,55 @@ import Footer from "../../components/Footer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export default function AbdomenPage() {
+export default function RinoplastiaPage() {
     const heroRef = useRef<HTMLElement | null>(null);
     const infoRef = useRef<HTMLElement | null>(null);
-    const resultadosRef = useRef<HTMLElement | null>(null);
+    const correccionesRef = useRef<HTMLElement | null>(null);
     const procesoRef = useRef<HTMLElement | null>(null);
+    const resultadosRef = useRef<HTMLElement | null>(null);
+    const testimoniosRef = useRef<HTMLElement | null>(null);
     const ctaRef = useRef<HTMLElement | null>(null);
 
     const infoContentRef = useRef<HTMLDivElement | null>(null);
-    const resultImagesRef = useRef<HTMLImageElement[]>([]);
+    const correccionesItemsRef = useRef<HTMLDivElement[]>([]);
     const procesoItemsRef = useRef<HTMLDivElement[]>([]);
+    const resultImagesRef = useRef<HTMLDivElement[]>([]);
+    const testimoniosItemsRef = useRef<HTMLDivElement[]>([]);
     const ctaContentRef = useRef<HTMLDivElement | null>(null);
+
+    const correcciones = [
+        "Giba o joroba nasal",
+        "Punta caída, larga, ancha o gruesa",
+        "Nariz desviada",
+        "Asimetrías",
+        "Problemas funcionales del tabique",
+    ];
+
+    const proceso = [
+        {
+            number: "01",
+            title: "Evaluación facial",
+            text: "Se analiza la nariz en relación con el rostro, la respiración y los objetivos del paciente.",
+        },
+        {
+            number: "02",
+            title: "Diseño personalizado",
+            text: "No se busca una nariz estándar, sino una versión más armónica y natural para cada rostro.",
+        },
+        {
+            number: "03",
+            title: "Recuperación progresiva",
+            text: "El cambio inicial se ve rápido, pero el resultado definitivo aparece con la desinflamación progresiva.",
+        },
+    ];
+
+    const testimonios = [
+        "Tenía miedo de que el cambio fuera demasiado evidente, pero el resultado fue muy natural.",
+        "Me explicó todo el proceso con claridad y eso me dio mucha tranquilidad.",
+        "Además de lo estético, mejoré mucho mi respiración.",
+        "Sentí que el objetivo era respetar mi rostro, no cambiarme por completo.",
+        "El seguimiento después de la cirugía fue muy importante para vivir el proceso con calma.",
+    ];
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -42,9 +80,43 @@ export default function AbdomenPage() {
                     ease: "none",
                     scrollTrigger: {
                         trigger: infoRef.current,
-                        start: "top 85%",
-                        end: "top 35%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
+                    },
+                }
+            );
+
+            gsap.fromTo(
+                correccionesItemsRef.current,
+                { opacity: 0, y: 70 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.15,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: correccionesRef.current,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
+                    },
+                }
+            );
+
+            gsap.fromTo(
+                procesoItemsRef.current,
+                { opacity: 0, y: 70 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.2,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: procesoRef.current,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
@@ -60,26 +132,26 @@ export default function AbdomenPage() {
                     ease: "none",
                     scrollTrigger: {
                         trigger: resultadosRef.current,
-                        start: "top 85%",
-                        end: "top 25%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
 
             gsap.fromTo(
-                procesoItemsRef.current,
-                { opacity: 0, y: 70 },
+                testimoniosItemsRef.current,
+                { opacity: 0, x: 90 },
                 {
                     opacity: 1,
-                    y: 0,
-                    stagger: 0.2,
+                    x: 0,
+                    stagger: 0.15,
                     ease: "none",
                     scrollTrigger: {
-                        trigger: procesoRef.current,
-                        start: "top 85%",
-                        end: "top 30%",
-                        scrub: true,
+                        trigger: testimoniosRef.current,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
@@ -93,9 +165,9 @@ export default function AbdomenPage() {
                     ease: "none",
                     scrollTrigger: {
                         trigger: ctaRef.current,
-                        start: "top 85%",
-                        end: "top 35%",
-                        scrub: true,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1,
                     },
                 }
             );
@@ -108,225 +180,406 @@ export default function AbdomenPage() {
         <>
             <Navbar />
 
-            <main className="bg-black text-white">
-                {/* HERO */}
+            <main className="bg-[#ffffff] text-[#25373d]">
+                {/* HERO - OSCURO */}
                 <section
                     ref={heroRef}
-                    className="relative min-h-screen flex items-center px-6 pt-28 overflow-hidden"
+                    className="relative flex min-h-screen items-center overflow-hidden bg-[#25373d] px-6 pt-28 text-white"
                 >
-                    <div className="absolute inset-0 bg-[url('/images/abdomen-hero.jpg')] bg-cover bg-center opacity-45" />
-                    <div className="absolute inset-0 bg-black/65" />
+                    <div className="absolute inset-0 bg-[url('/images/rinoplastia-hero.jpg')] bg-cover bg-center opacity-40" />
+                    <div className="absolute inset-0 bg-[#25373d]/78" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/90 via-[#25373d]/58 to-[#25373d]/96" />
 
-                    <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+                    <div className="absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#83a0ab]/18 blur-3xl" />
+                    <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#567580]/22 blur-3xl" />
+
+                    <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
                         <div>
-                            <span className="inline-block text-sm tracking-[0.3em] uppercase text-gray-400 mb-6">
-                                Abdomen
+                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
+                                Rinoplastía
                             </span>
 
-                            <h1 className="text-4xl md:text-6xl font-semibold leading-tight mb-8">
-                                Recuperá armonía
+                            <h1 className="mb-8 text-4xl font-semibold leading-[1.05] text-white md:text-6xl">
+                                Armonía facial
                                 <br />
-                                <span className="text-gray-400">
-                                    y definición corporal.
+                                <span className="text-[#83a0ab]">
+                                    con resultado natural.
                                 </span>
                             </h1>
 
-                            <p className="text-gray-300 text-lg leading-relaxed mb-10 max-w-xl">
-                                La cirugía de abdomen busca mejorar el contorno corporal,
-                                tratar exceso de piel o flacidez, y lograr una silueta más
-                                armónica con un abordaje personalizado.
+                            <p className="mb-10 max-w-xl text-lg leading-relaxed text-white/76">
+                                La rinoplastía no es una cirugía estándar. Cada nariz, cada
+                                rostro y cada objetivo requieren diagnóstico, planificación y
+                                acompañamiento personalizado.
                             </p>
 
                             <a
                                 href="https://wa.me/5491124793160"
                                 target="_blank"
-                                className="inline-block border border-white px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
                             >
                                 QUIERO EVALUAR MI CASO
                             </a>
                         </div>
 
-                        <div className="hidden md:block border border-white/20 p-6">
-                            <div className="aspect-[4/5] bg-white/10 overflow-hidden">
+                        <div className="hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:block">
+                            <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-white/10">
                                 <img
-                                    src="/images/abdomen-card.jpg"
-                                    alt="Cirugía de abdomen"
-                                    className="w-full h-full object-cover opacity-90"
+                                    src="/images/rinoplastia-card.jpg"
+                                    alt="Rinoplastía con resultado natural"
+                                    className="h-full w-full object-cover opacity-90"
                                 />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* INFO */}
-                <section ref={infoRef} className="py-24 px-6 border-t border-white/10">
+                {/* INFO - CLARO */}
+                <section
+                    ref={infoRef}
+                    className="relative overflow-hidden bg-[#f5f8f9] px-6 py-24 text-[#25373d]"
+                >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.12),transparent_36%)]" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
+
                     <div
                         ref={infoContentRef}
-                        className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center"
+                        className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2"
                     >
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-semibold mb-8">
-                                ¿Cuándo considerar una cirugía de abdomen?
+                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580] shadow-sm">
+                                Evaluación personalizada
+                            </span>
+
+                            <h2 className="mb-8 text-3xl font-semibold leading-[1.08] md:text-5xl">
+                                ¿Qué es
+                                <br />
+                                <span className="text-[#567580]">
+                                    una rinoplastía?
+                                </span>
                             </h2>
 
-                            <p className="text-gray-400 leading-relaxed mb-8">
-                                Muchas veces el abdomen cambia después de embarazos, pérdida de
-                                peso o cambios corporales importantes. La evaluación médica
-                                permite definir si el tratamiento indicado es una liposucción,
-                                una abdominoplastia o una combinación.
+                            <p className="mb-8 leading-relaxed text-[#506065]">
+                                Es una cirugía que modifica la forma de la nariz para mejorar
+                                la armonía facial y, en muchos casos, también la respiración.
                             </p>
 
-                            <ul className="space-y-4 text-gray-300">
-                                <li>• Si hay exceso de piel o flacidez abdominal.</li>
-                                <li>• Si buscás mejorar el contorno y la definición.</li>
-                                <li>• Después de embarazos o cambios importantes de peso.</li>
-                                <li>• Si querés un resultado armónico y natural.</li>
-                            </ul>
+                            <p className="leading-relaxed text-[#506065]">
+                                El objetivo no es cambiarte por completo, sino lograr una
+                                versión más armónica, natural y coherente con tu rostro.
+                            </p>
                         </div>
 
-                        <div className="border border-white/20 p-8">
-                            <h3 className="text-2xl font-semibold mb-6">
-                                No todos los abdómenes necesitan lo mismo.
-                            </h3>
+                        <div className="relative overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-white p-8 shadow-[0_24px_70px_rgba(37,55,61,0.12)]">
+                            <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#83a0ab]/16 blur-3xl" />
 
-                            <p className="text-gray-400 leading-relaxed">
-                                La clave está en un diagnóstico correcto. No se trata de aplicar
-                                una técnica estándar, sino de entender tu cuerpo, tus objetivos
-                                y el procedimiento más seguro para tu caso.
-                            </p>
+                            <div className="relative z-10">
+                                <p className="mb-4 text-sm uppercase tracking-[0.22em] text-[#6b8994]">
+                                    No es solo estética
+                                </p>
+
+                                <h3 className="mb-6 text-2xl font-semibold">
+                                    Muchas rinoplastías incluyen corrección funcional.
+                                </h3>
+
+                                <p className="leading-relaxed text-[#506065]">
+                                    En algunos casos, además del cambio estético, se evalúa el
+                                    tabique nasal u otros aspectos que pueden influir en la
+                                    respiración.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                {/* RESULTADOS */}
+                {/* CORRECCIONES - OSCURO */}
                 <section
-                    ref={resultadosRef}
-                    className="bg-white text-black py-24 px-6"
+                    ref={correccionesRef}
+                    className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
                 >
-                    <div className="max-w-6xl mx-auto">
-                        <div className="mb-16 text-center">
-                            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-                                Resultados antes y después
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.22),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.2),transparent_36%)]" />
+                    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
+
+                    <div className="relative z-10 mx-auto max-w-6xl">
+                        <div className="mb-14 max-w-3xl">
+                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
+                                Qué se puede corregir
+                            </span>
+
+                            <h2 className="mb-6 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
+                                Cada nariz necesita
+                                <br />
+                                <span className="text-[#83a0ab]">
+                                    una mirada distinta.
+                                </span>
                             </h2>
 
-                            <p className="text-gray-500">
-                                Cambios reales, con foco en proporción, naturalidad y seguridad.
+                            <p className="max-w-2xl leading-relaxed text-white/68">
+                                La evaluación permite identificar qué aspectos pueden corregirse
+                                y qué resultado es posible según tu anatomía facial.
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <img
+                        <div className="grid gap-5 md:grid-cols-5">
+                            {correcciones.map((item, index) => (
+                                <div
+                                    key={item}
+                                    ref={(el) => {
+                                        if (el) correccionesItemsRef.current[index] = el;
+                                    }}
+                                    className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+                                >
+                                    <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-[#83a0ab]/10 blur-3xl" />
+
+                                    <span className="mb-8 block text-sm uppercase tracking-[0.22em] text-[#83a0ab]">
+                                        0{index + 1}
+                                    </span>
+
+                                    <h3 className="text-base font-medium leading-snug text-white">
+                                        {item}
+                                    </h3>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* PROCESO - BLANCO */}
+                <section
+                    ref={procesoRef}
+                    className="relative overflow-hidden bg-white px-6 py-24 text-[#25373d]"
+                >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.1),transparent_36%)]" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
+
+                    <div className="relative z-10 mx-auto max-w-6xl">
+                        <div className="mb-14 max-w-3xl">
+                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
+                                Proceso
+                            </span>
+
+                            <h2 className="mb-6 text-3xl font-semibold leading-[1.08] md:text-5xl">
+                                Un diseño personalizado
+                                <br />
+                                <span className="text-[#567580]">
+                                    para cada rostro.
+                                </span>
+                            </h2>
+
+                            <p className="leading-relaxed text-[#506065]">
+                                No todos los rostros necesitan lo mismo. La clave está en
+                                planificar un resultado natural, seguro y coherente con tus
+                                facciones.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-3">
+                            {proceso.map((item, index) => (
+                                <div
+                                    key={item.number}
+                                    ref={(el) => {
+                                        if (el) procesoItemsRef.current[index] = el;
+                                    }}
+                                    className="relative overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] p-7 shadow-[0_24px_70px_rgba(37,55,61,0.1)]"
+                                >
+                                    <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/12 blur-3xl" />
+
+                                    <span className="text-sm uppercase tracking-[0.22em] text-[#6b8994]">
+                                        {item.number}
+                                    </span>
+
+                                    <h3 className="mt-4 mb-4 text-xl font-medium text-[#25373d]">
+                                        {item.title}
+                                    </h3>
+
+                                    <p className="text-sm leading-relaxed text-[#506065]">
+                                        {item.text}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* RESULTADOS - OSCURO */}
+                <section
+                    ref={resultadosRef}
+                    className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
+                >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.22),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.2),transparent_36%)]" />
+                    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
+
+                    <div className="relative z-10 mx-auto max-w-6xl">
+                        <div className="mb-16 text-center">
+                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
+                                Resultados reales
+                            </span>
+
+                            <h2 className="mb-5 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
+                                Antes y después
+                            </h2>
+
+                            <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/68 md:text-lg">
+                                Cambios reales, con foco en armonía facial, naturalidad y
+                                planificación personalizada.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-8 md:grid-cols-2">
+                            <div
                                 ref={(el) => {
                                     if (el) resultImagesRef.current[0] = el;
                                 }}
-                                src="/images/abdomen-antes-despues-1.jpg"
-                                alt="Resultado abdomen antes y después"
-                                className="w-full object-cover"
-                            />
+                                className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+                            >
+                                <img
+                                    src="/images/rinoplastia-antes-despues-1.jpg"
+                                    alt="Resultado rinoplastía antes y después"
+                                    className="h-[520px] w-full rounded-[1.4rem] object-cover"
+                                />
+                            </div>
 
-                            <img
+                            <div
                                 ref={(el) => {
                                     if (el) resultImagesRef.current[1] = el;
                                 }}
-                                src="/images/abdomen-antes-despues-2.jpg"
-                                alt="Resultado abdomen antes y después"
-                                className="w-full object-cover"
-                            />
+                                className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+                            >
+                                <img
+                                    src="/images/rinoplastia-antes-despues-2.jpg"
+                                    alt="Resultado rinoplastía antes y después"
+                                    className="h-[520px] w-full rounded-[1.4rem] object-cover"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mt-10 rounded-[2rem] border border-white/12 bg-white/[0.06] p-6 backdrop-blur-xl">
+                            <p className="text-sm leading-relaxed text-white/68">
+                                El resultado definitivo puede tardar meses. La nariz se
+                                desinflama de forma progresiva y cada proceso de recuperación es
+                                distinto.
+                            </p>
                         </div>
                     </div>
                 </section>
 
-                {/* PROCESO */}
-                <section ref={procesoRef} className="py-24 px-6">
-                    <div className="max-w-6xl mx-auto">
-                        <div className="max-w-3xl mb-14">
-                            <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-                                Un proceso pensado con criterio médico
+                {/* TESTIMONIOS - CLARO */}
+                <section
+                    ref={testimoniosRef}
+                    className="relative overflow-hidden bg-[#ffffff] px-6 py-24 text-[#25373d]"
+                >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.1),transparent_36%)]" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
+                    <div className="absolute -right-32 top-16 h-[420px] w-[420px] rounded-full bg-[#83a0ab]/12 blur-3xl" />
+                    <div className="absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-[#567580]/10 blur-3xl" />
+
+                    <div className="relative z-10 mx-auto max-w-6xl">
+                        <div className="mb-12 max-w-3xl">
+                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
+                                Experiencias reales
+                            </span>
+
+                            <h2 className="mb-5 text-3xl font-semibold leading-[1.08] md:text-5xl">
+                                Testimonios
+                                <br />
+                                <span className="text-[#567580]">
+                                    de pacientes acompañados.
+                                </span>
                             </h2>
 
-                            <p className="text-gray-400 leading-relaxed">
-                                Desde la primera consulta se evalúa qué procedimiento es el más
-                                adecuado para tu caso, siempre priorizando seguridad,
-                                naturalidad y acompañamiento.
+                            <p className="max-w-2xl text-base leading-relaxed text-[#506065] md:text-lg">
+                                La rinoplastía también requiere confianza, claridad y un proceso
+                                acompañado desde la primera consulta.
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-6">
-                            <div
-                                ref={(el) => {
-                                    if (el) procesoItemsRef.current[0] = el;
-                                }}
-                                className="border border-white/20 p-6"
-                            >
-                                <span className="text-gray-500 text-sm">01</span>
-                                <h3 className="text-xl font-medium mt-3 mb-4">
-                                    Evaluación inicial
-                                </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">
-                                    Se analiza tu anatomía, antecedentes y objetivos para definir
-                                    el mejor camino.
-                                </p>
-                            </div>
+                        <div className="flex gap-6 overflow-x-auto pb-5 pr-6 [scrollbar-width:thin] [scrollbar-color:#83a0ab_transparent]">
+                            {testimonios.map((texto, index) => (
+                                <div
+                                    key={index}
+                                    ref={(el) => {
+                                        if (el) testimoniosItemsRef.current[index] = el;
+                                    }}
+                                    className="group relative min-w-[280px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] p-7 shadow-[0_24px_70px_rgba(37,55,61,0.1)] transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/70 hover:bg-white md:min-w-[340px]"
+                                >
+                                    <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/65 to-transparent" />
+                                    <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/12 blur-3xl transition group-hover:bg-[#83a0ab]/20" />
 
-                            <div
-                                ref={(el) => {
-                                    if (el) procesoItemsRef.current[1] = el;
-                                }}
-                                className="border border-white/20 p-6"
-                            >
-                                <span className="text-gray-500 text-sm">02</span>
-                                <h3 className="text-xl font-medium mt-3 mb-4">
-                                    Planificación
-                                </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">
-                                    Se determina si corresponde liposucción, abdominoplastia o una
-                                    estrategia combinada.
-                                </p>
-                            </div>
+                                    <div className="relative z-10">
+                                        <div className="mb-8 flex items-center justify-between">
+                                            <span className="text-xs font-medium uppercase tracking-[0.22em] text-[#6b8994]">
+                                                Paciente 0{index + 1}
+                                            </span>
 
-                            <div
-                                ref={(el) => {
-                                    if (el) procesoItemsRef.current[2] = el;
-                                }}
-                                className="border border-white/20 p-6"
-                            >
-                                <span className="text-gray-500 text-sm">03</span>
-                                <h3 className="text-xl font-medium mt-3 mb-4">
-                                    Seguimiento
-                                </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">
-                                    Acompañamiento durante el postoperatorio para una recuperación
-                                    más tranquila y controlada.
-                                </p>
-                            </div>
+                                            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white text-2xl leading-none text-[#83a0ab]">
+                                                ”
+                                            </span>
+                                        </div>
+
+                                        <p className="text-base leading-relaxed text-[#25373d]">
+                                            “{texto}”
+                                        </p>
+
+                                        <div className="mt-8 flex items-center gap-2">
+                                            <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
+                                            <span className="text-xs uppercase tracking-[0.18em] text-[#506065]">
+                                                Acompañamiento real
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* CTA */}
+                {/* CTA - TONO MEDIO PREMIUM */}
                 <section
                     ref={ctaRef}
-                    className="bg-black text-white py-32 px-6 text-center border-t border-white/10"
+                    className="relative overflow-hidden bg-[#506065] px-6 py-32 text-white"
                 >
-                    <div ref={ctaContentRef} className="max-w-3xl mx-auto">
-                        <h2 className="text-3xl md:text-5xl font-semibold mb-10 leading-tight">
-                            Si querés mejorar tu abdomen,
-                            <br />
-                            empecemos por evaluar tu caso.
-                        </h2>
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,#506065_0%,#567580_45%,#6b8994_100%)]" />
+                    <div className="absolute inset-0 opacity-[0.1] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:58px_58px]" />
+                    <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
+                    <div className="absolute -bottom-44 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#25373d]/35 blur-3xl" />
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
 
-                        <p className="text-gray-400 mb-12">
-                            Hablemos de tus objetivos y veamos cuál es la mejor alternativa
-                            para vos.
-                        </p>
+                    <div
+                        ref={ctaContentRef}
+                        className="relative z-10 mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-white/14 bg-[#25373d]/75 px-6 py-14 text-center text-white shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur-xl md:px-12 md:py-16"
+                    >
+                        <div className="absolute -top-32 left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#83a0ab]/20 blur-3xl" />
+                        <div className="absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#567580]/20 blur-3xl" />
 
-                        <a
-                            href="https://wa.me/5491124793160"
-                            target="_blank"
-                            className="inline-block border border-white px-10 py-5 text-sm tracking-wide hover:bg-white hover:text-black transition"
-                        >
-                            QUIERO CHATEAR CON EL DOCTOR
-                        </a>
+                        <div className="relative z-10">
+                            <span className="mb-7 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab]">
+                                Evaluación personalizada
+                            </span>
+
+                            <h2 className="mb-8 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
+                                Si estás pensando en una rinoplastía,
+                                <br />
+                                <span className="text-[#83a0ab]">
+                                    lo primero es una buena evaluación.
+                                </span>
+                            </h2>
+
+                            <p className="mx-auto mb-10 max-w-2xl leading-relaxed text-white/72">
+                                Hablemos de tu caso, resolvamos tus dudas y veamos qué resultado
+                                puede lograrse de forma natural y personalizada.
+                            </p>
+
+                            <a
+                                href="https://wa.me/5491124793160"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-10 py-5 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
+                            >
+                                QUIERO CHATEAR CON EL DOCTOR
+                            </a>
+                        </div>
                     </div>
                 </section>
             </main>
