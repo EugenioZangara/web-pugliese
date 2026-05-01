@@ -22,7 +22,7 @@ const results = [
 export default function Resultados() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
-    const imagesRef = useRef<HTMLDivElement[]>([]);
+    const imagesRef = useRef<HTMLElement[]>([]);
     const ctaRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -135,6 +135,7 @@ export default function Resultados() {
                                     <span className="block text-xs font-medium uppercase tracking-[0.24em] text-[#6b8994]">
                                         {item.label}
                                     </span>
+
                                     <span className="mt-1 block text-xs text-[#506065]/70">
                                         {item.procedure}
                                     </span>

@@ -43,7 +43,7 @@ const procedimientos = [
 export default function Procedimientos() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const titleRef = useRef<HTMLHeadingElement | null>(null);
-    const cardsRef = useRef<HTMLDivElement[]>([]);
+    const cardsRef = useRef<HTMLElement[]>([]);
     const ctaRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -209,6 +209,7 @@ export default function Procedimientos() {
                         <p className="mb-2 text-sm uppercase tracking-[0.22em] text-[#83a0ab]">
                             Evaluación personalizada
                         </p>
+
                         <h3 className="text-2xl font-semibold text-white">
                             ¿Querés saber qué procedimiento se adapta a tu caso?
                         </h3>

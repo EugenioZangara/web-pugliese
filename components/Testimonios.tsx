@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function Testimonios() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const titleRef = useRef<HTMLDivElement | null>(null);
-    const itemsRef = useRef<HTMLDivElement[]>([]);
+    const itemsRef = useRef<HTMLElement[]>([]);
     const trackRef = useRef<HTMLDivElement | null>(null);
     const marqueeTweenRef = useRef<gsap.core.Tween | null>(null);
 
