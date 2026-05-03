@@ -50,35 +50,35 @@ export default function RinoplastiaPage() {
 
     const testimonios = [
         {
-            image: "/images/testimonios/rinoplastia-1.jpg",
+            image: "/images/testimonios/rinoplastia-1.png",
             quote:
                 "Tenía miedo de que el cambio fuera demasiado evidente, pero el resultado fue muy natural.",
             category: "Rinoplastía",
             tag: "Naturalidad",
         },
         {
-            image: "/images/testimonios/rinoplastia-2.jpg",
+            image: "/images/testimonios/rinoplastia-2.png",
             quote:
                 "Me explicó todo el proceso con claridad y eso me dio mucha tranquilidad.",
             category: "Evaluación personalizada",
             tag: "Claridad",
         },
         {
-            image: "/images/testimonios/rinoplastia-3.jpg",
+            image: "/images/testimonios/rinoplastia-3.png",
             quote:
                 "Además de lo estético, mejoré mucho mi respiración.",
             category: "Corrección funcional",
             tag: "Bienestar",
         },
         {
-            image: "/images/testimonios/rinoplastia-4.jpg",
+            image: "/images/testimonios/rinoplastia-4.png",
             quote:
                 "Sentí que el objetivo era respetar mi rostro, no cambiarme por completo.",
             category: "Armonía facial",
             tag: "Resultado natural",
         },
         {
-            image: "/images/testimonios/rinoplastia-5.jpg",
+            image: "/images/testimonios/rinoplastia-5.png",
             quote:
                 "El seguimiento después de la cirugía fue muy importante para vivir el proceso con calma.",
             category: "Postoperatorio",
@@ -217,7 +217,7 @@ export default function RinoplastiaPage() {
                     ref={heroRef}
                     className="relative flex min-h-screen items-center overflow-hidden bg-[#25373d] px-6 pt-28 text-white"
                 >
-                    <div className="absolute inset-0 bg-[url('/images/rinoplastia-hero.jpg')] bg-cover bg-center opacity-40" />
+                    <div className="absolute inset-0 bg-[url('/images/rinoplastia-hero.png')] bg-cover bg-center opacity-40" />
                     <div className="absolute inset-0 bg-[#25373d]/78" />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/90 via-[#25373d]/58 to-[#25373d]/96" />
 
@@ -257,7 +257,7 @@ export default function RinoplastiaPage() {
                         <div className="hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:block">
                             <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-white/10">
                                 <img
-                                    src="/images/rinoplastia-card.jpg"
+                                    src="/images/rinoplastia-card.png"
                                     alt="Rinoplastía con resultado natural"
                                     className="h-full w-full object-cover opacity-90"
                                 />

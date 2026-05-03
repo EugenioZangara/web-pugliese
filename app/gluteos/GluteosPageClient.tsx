@@ -57,28 +57,28 @@ export default function GluteosPage() {
             tag: "Naturalidad",
         },
         {
-            image: "/images/testimonios/testimonio-2.jpg",
+            image: "/images/testimonios/testimonio-2.png",
             quote:
                 "Me explicó qué podía lograrse en mi caso y eso me dio mucha seguridad.",
             category: "Evaluación personalizada",
             tag: "Confianza",
         },
         {
-            image: "/images/testimonios/testimonio-3.jpg",
+            image: "/images/testimonios/testimonio-3.png",
             quote:
                 "Sentí acompañamiento en todo el proceso, especialmente después de la cirugía.",
             category: "Seguimiento",
             tag: "Acompañamiento real",
         },
         {
-            image: "/images/testimonios/testimonio-4.jpg",
+            image: "/images/testimonios/testimonio-4.png",
             quote:
                 "Quería verme más armónica, no cambiar por completo, y eso fue lo que logramos.",
             category: "Armonía corporal",
             tag: "Resultado natural",
         },
         {
-            image: "/images/testimonios/testimonio-5.jpg",
+            image: "/images/testimonios/testimonio-5.png",
             quote:
                 "La evaluación me ayudó a entender cuál era la mejor opción para mi cuerpo.",
             category: "Consulta inicial",
@@ -257,7 +257,7 @@ export default function GluteosPage() {
                         <div className="hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:block">
                             <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-white/10">
                                 <img
-                                    src="/images/gluteos-card.jpg"
+                                    src="/images/gluteos-card.png"
                                     alt="Cirugía de glúteos con resultado natural"
                                     className="h-full w-full object-cover opacity-90"
                                 />
@@ -483,7 +483,7 @@ export default function GluteosPage() {
                                 className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
                             >
                                 <img
-                                    src="/images/gluteos-antes-despues-1.jpg"
+                                    src="/images/gluteos-antes-despues-1.png"
                                     alt="Resultado cirugía de glúteos antes y después"
                                     className="h-[520px] w-full rounded-[1.4rem] object-cover"
                                 />
@@ -496,7 +496,7 @@ export default function GluteosPage() {
                                 className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
                             >
                                 <img
-                                    src="/images/gluteos-antes-despues-2.jpg"
+                                    src="/images/gluteos-antes-despues-2.png"
                                     alt="Resultado cirugía de glúteos antes y después"
                                     className="h-[520px] w-full rounded-[1.4rem] object-cover"
                                 />
