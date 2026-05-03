@@ -64,21 +64,21 @@ export default function AbdomenPage() {
             tag: "Naturalidad",
         },
         {
-            image: "/images/testimonios/abdomen-3.jpg",
+            image: "/images/testimonios/abdomen-3.png",
             quote:
                 "El seguimiento después de la cirugía fue clave para transitar el proceso con tranquilidad.",
             category: "Postoperatorio",
             tag: "Seguimiento",
         },
         {
-            image: "/images/testimonios/abdomen-4.jpg",
+            image: "/images/testimonios/abdomen-4.png",
             quote:
                 "Tenía muchas dudas y miedo, pero la evaluación me ayudó a entender qué era posible en mi caso.",
             category: "Evaluación personalizada",
             tag: "Confianza",
         },
         {
-            image: "/images/testimonios/abdomen-5.jpg",
+            image: "/images/testimonios/abdomen-5.png",
             quote:
                 "Viajé desde el interior y me orientaron con todo el proceso.",
             category: "Pacientes del interior",

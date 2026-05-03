@@ -115,8 +115,23 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="relative z-10 mx-auto mt-12 flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
-                <p>© 2026 Dr. Víctor Pugliese. Todos los derechos reservados.</p>
+            <div className="relative z-10 mx-auto mt-12 flex max-w-6xl flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-start md:justify-between">
+                <div className="space-y-2">
+                    <p>© 2026 Dr. Víctor Pugliese. Todos los derechos reservados.</p>
+
+                    <p>
+                        Sitio desarrollado por{" "}
+                        <a
+                            href="https://www.linkedin.com/in/eugenio-zangara/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Ver perfil de LinkedIn de Eugenio Zangara"
+                            className="font-medium text-white/55 transition hover:text-[#83a0ab]"
+                        >
+                            Eugenio Zangara
+                        </a>
+                    </p>
+                </div>
 
                 <div className="flex flex-col gap-2 md:flex-row md:gap-4">
                     <Link
