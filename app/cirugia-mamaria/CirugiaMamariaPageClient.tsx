@@ -1,496 +1,274 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const whatsappUrl = "https://wa.me/5491124793160";
+
+const beneficios = [
+    "Resultados naturales",
+    "Diseño personalizado",
+    "Acompañamiento real",
+];
+
+const objetivos = [
+    "Mejorar forma y volumen",
+    "Recuperar proporción",
+    "Corregir asimetrías",
+    "Acompañar cambios post embarazo",
+    "Buscar armonía corporal",
+];
+
+const proceso = [
+    {
+        number: "01",
+        title: "Evaluación corporal",
+        text: "Analizamos tu anatomía, tejido, proporciones y expectativas para definir una opción segura.",
+    },
+    {
+        number: "02",
+        title: "Planificación",
+        text: "No se busca un molde, sino una forma y volumen coherentes con tu cuerpo.",
+    },
+    {
+        number: "03",
+        title: "Seguimiento",
+        text: "Acompañamiento antes y después de la cirugía para transitar el proceso con claridad.",
+    },
+];
 
 export default function CirugiaMamariaPage() {
-    const heroRef = useRef<HTMLElement | null>(null);
-    const infoRef = useRef<HTMLElement | null>(null);
-    const resultadosRef = useRef<HTMLElement | null>(null);
-    const testimoniosRef = useRef<HTMLElement | null>(null);
-    const ctaRef = useRef<HTMLElement | null>(null);
-
-    const infoContentRef = useRef<HTMLDivElement | null>(null);
-    const resultImagesRef = useRef<HTMLDivElement[]>([]);
-    const testimoniosTitleRef = useRef<HTMLDivElement | null>(null);
-    const ctaContentRef = useRef<HTMLDivElement | null>(null);
-
-    const testimonios = [
-        {
-            image: "/images/testimonios/mamaria-1.jpg",
-            quote: "Me ayudó a entender qué resultado era posible para mi cuerpo.",
-            category: "Cirugía mamaria",
-            tag: "Evaluación personalizada",
-        },
-        {
-            image: "/images/testimonios/mamaria-2.jpg",
-            quote: "Buscaba algo natural y me sentí escuchada desde la primera consulta.",
-            category: "Resultado natural",
-            tag: "Naturalidad",
-        },
-        {
-            image: "/images/testimonios/mamaria-3.jpg",
-            quote: "El acompañamiento fue clave para llegar tranquila a la cirugía.",
-            category: "Acompañamiento",
-            tag: "Contención",
-        },
-        {
-            image: "/images/testimonios/mamaria-4.jpg",
-            quote: "Después del embarazo quería volver a sentirme cómoda con mi cuerpo.",
-            category: "Armonía corporal",
-            tag: "Confianza",
-        },
-        {
-            image: "/images/testimonios/mamaria-5.jpg",
-            quote: "Me explicó todo con claridad y sin prometer cosas exageradas.",
-            category: "Consulta inicial",
-            tag: "Claridad",
-        },
-        {
-            image: "/images/testimonios/mamaria-6.jpg",
-            quote: "El seguimiento después de la cirugía fue excelente.",
-            category: "Postoperatorio",
-            tag: "Seguimiento",
-        },
-    ];
-
-    const testimoniosLoop = [...testimonios, ...testimonios];
-
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const ctx = gsap.context(() => {
-            gsap.fromTo(
-                heroRef.current,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.1,
-                    ease: "power3.out",
-                }
-            );
-
-            gsap.fromTo(
-                infoContentRef.current,
-                { opacity: 0, y: 80 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: infoRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
-                resultImagesRef.current,
-                { opacity: 0, y: 80, scale: 0.96 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    stagger: 0.2,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: resultadosRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
-                testimoniosTitleRef.current,
-                { opacity: 0, y: 70 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: testimoniosRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
-                ctaContentRef.current,
-                { opacity: 0, y: 70 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ctaRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-        });
-
-        return () => ctx.revert();
-    }, []);
-
     return (
         <>
             <Navbar />
 
-            <main className="bg-[#ffffff] text-[#25373d]">
-                {/* HERO - OSCURO */}
-                <section
-                    ref={heroRef}
-                    className="relative flex min-h-screen items-center overflow-hidden bg-[#25373d] px-6 pt-28 text-white"
-                >
-                    <div className="absolute inset-0 bg-[url('/images/mamaria-hero.jpg')] bg-cover bg-center opacity-40" />
-                    <div className="absolute inset-0 bg-[#25373d]/78" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/90 via-[#25373d]/58 to-[#25373d]/96" />
+            <main className="overflow-x-hidden bg-white text-[#25373d]">
+                <section className="relative flex min-h-[100svh] items-start overflow-hidden bg-[#25373d] px-5 pb-10 pt-24 text-white sm:px-6 sm:items-center sm:py-12 sm:pt-28 lg:py-24 lg:pt-32">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(131,160,171,0.24),transparent_32%),linear-gradient(135deg,#25373d_0%,#25373d_42%,#506065_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.045] [background-size:54px_54px]" />
+                    <div className="absolute -right-28 bottom-10 h-[320px] w-[320px] rounded-full bg-[#83a0ab]/16 blur-3xl md:h-[480px] md:w-[480px]" />
 
-                    <div className="absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#83a0ab]/18 blur-3xl" />
-                    <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#567580]/22 blur-3xl" />
-
-                    <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
-                        <div>
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
+                    <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-9 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
+                        <div className="max-w-2xl lg:max-w-xl">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.08] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.16em] text-[#c3d4da] backdrop-blur sm:text-xs sm:tracking-[0.18em]">
                                 Cirugía mamaria
                             </span>
 
-                            <h1 className="mb-8 text-4xl font-semibold leading-[1.05] text-white md:text-6xl">
-                                Resultados naturales,
+                            <h1 className="mb-4 text-balance text-[2.38rem] font-semibold leading-[1.02] text-white min-[390px]:text-[2.6rem] sm:mb-5 sm:text-5xl sm:leading-[0.98] lg:text-[4rem]">
+                                Forma, volumen
                                 <br />
-                                <span className="text-[#83a0ab]">
-                                    pensados para tu cuerpo.
-                                </span>
+                                y proporción natural.
                             </h1>
 
-                            <p className="mb-10 max-w-xl text-lg leading-relaxed text-white/76">
-                                Una cirugía mamaria no debería responder a un molde. Cada caso
-                                necesita evaluación, planificación y criterio estético
-                                profesional.
+                            <p className="mb-5 max-w-lg text-[1.03rem] leading-7 text-white/80 sm:mb-6 sm:text-lg">
+                                Cirugía mamaria con evaluación personalizada, criterio médico y
+                                resultados pensados para tu cuerpo.
                             </p>
 
                             <a
-                                href="https://wa.me/5491124793160"
+                                href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
+                                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/20 bg-[#25D366] px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-[0.05em] text-white shadow-[0_16px_34px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:px-8"
                             >
-                                QUIERO EVALUAR MI CASO
+                                Reservar consulta por WhatsApp
                             </a>
-                        </div>
 
-                        <div className="hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:block">
-                            <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-white/10">
-                                <img
-                                    src="/images/mamaria-card.jpg"
-                                    alt="Cirugía mamaria con resultados naturales"
-                                    className="h-full w-full object-cover opacity-90"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* INFO - CLARO */}
-                <section
-                    ref={infoRef}
-                    className="relative overflow-hidden bg-[#f5f8f9] px-6 py-24 text-[#25373d]"
-                >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.12),transparent_36%)]" />
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
-
-                    <div
-                        ref={infoContentRef}
-                        className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2"
-                    >
-                        <div>
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580] shadow-sm">
-                                Evaluación personalizada
-                            </span>
-
-                            <h2 className="mb-8 text-3xl font-semibold leading-[1.08] md:text-5xl">
-                                ¿Cuándo considerar
-                                <br />
-                                <span className="text-[#567580]">
-                                    una cirugía mamaria?
-                                </span>
-                            </h2>
-
-                            <p className="mb-8 leading-relaxed text-[#506065]">
-                                Muchas pacientes no buscan “cambiar por completo”, sino recuperar
-                                armonía, mejorar proporciones o sentirse más seguras con su
-                                cuerpo.
-                            </p>
-
-                            <ul className="space-y-4 text-[#25373d]">
-                                <li className="flex gap-3">
-                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
-                                    Si querés mejorar la forma y el volumen.
-                                </li>
-
-                                <li className="flex gap-3">
-                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
-                                    Después de cambios como embarazo o pérdida de peso.
-                                </li>
-
-                                <li className="flex gap-3">
-                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
-                                    Si buscás mayor confianza y armonía corporal.
-                                </li>
-
-                                <li className="flex gap-3">
-                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
-                                    Si querés un resultado natural, no exagerado.
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className="relative overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-white p-8 shadow-[0_24px_70px_rgba(37,55,61,0.12)]">
-                            <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#83a0ab]/16 blur-3xl" />
-
-                            <div className="relative z-10">
-                                <p className="mb-4 text-sm uppercase tracking-[0.22em] text-[#6b8994]">
-                                    Diseño personalizado
-                                </p>
-
-                                <h3 className="mb-6 text-2xl font-semibold">
-                                    El objetivo no es copiar un resultado.
-                                </h3>
-
-                                <p className="leading-relaxed text-[#506065]">
-                                    El objetivo es diseñar una opción posible, segura y coherente
-                                    con tu cuerpo. Por eso la consulta inicial es clave: permite
-                                    evaluar tu caso, despejar dudas y planificar el procedimiento
-                                    con criterio.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* RESULTADOS - OSCURO */}
-                <section
-                    ref={resultadosRef}
-                    className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
-                >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.22),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
-                    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
-
-                    <div className="relative z-10 mx-auto max-w-6xl">
-                        <div className="mb-16 text-center">
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
-                                Resultados reales
-                            </span>
-
-                            <h2 className="mb-5 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
-                                Resultados antes y después
-                            </h2>
-
-                            <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-                                Cambios reales, con foco en naturalidad, proporción y armonía.
-                            </p>
-                        </div>
-
-                        <div className="grid gap-8 md:grid-cols-2">
-                            <div
-                                ref={(el) => {
-                                    if (el) resultImagesRef.current[0] = el;
-                                }}
-                                className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur"
-                            >
-                                <img
-                                    src="/images/mamaria-antes-despues-1.jpg"
-                                    alt="Resultado cirugía mamaria antes y después"
-                                    className="h-[520px] w-full rounded-[1.4rem] object-cover"
-                                />
-                            </div>
-
-                            <div
-                                ref={(el) => {
-                                    if (el) resultImagesRef.current[1] = el;
-                                }}
-                                className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur"
-                            >
-                                <img
-                                    src="/images/mamaria-antes-despues-2.jpg"
-                                    alt="Resultado cirugía mamaria antes y después"
-                                    className="h-[520px] w-full rounded-[1.4rem] object-cover"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="mt-10 rounded-[2rem] border border-[#83a0ab]/25 bg-white/[0.06] p-6 text-white shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur">
-                            <p className="text-sm leading-relaxed text-white/68">
-                                Las imágenes muestran casos reales. Cada cuerpo, tejido y proceso
-                                de recuperación es distinto; por eso la evaluación médica es
-                                fundamental para definir expectativas realistas.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* TESTIMONIOS - CLARO */}
-                <section
-                    ref={testimoniosRef}
-                    className="relative overflow-hidden bg-white px-6 py-24 text-[#25373d]"
-                >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(131,160,171,0.18),transparent_34%),radial-gradient(circle_at_85%_80%,rgba(107,137,148,0.12),transparent_34%)]" />
-                    <div className="absolute inset-0 opacity-[0.12] bg-[linear-gradient(90deg,#25373d_1px,transparent_1px),linear-gradient(180deg,#25373d_1px,transparent_1px)] [background-size:56px_56px]" />
-
-                    <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-[#83a0ab]/18 blur-3xl" />
-                    <div className="absolute -bottom-40 left-1/3 h-[420px] w-[420px] rounded-full bg-[#567580]/12 blur-3xl" />
-
-                    <div className="relative z-10 mx-auto max-w-6xl">
-                        <div ref={testimoniosTitleRef} className="mb-12 max-w-3xl">
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
-                                Experiencias reales
-                            </span>
-
-                            <h2 className="mb-5 text-3xl font-semibold leading-[1.08] text-[#25373d] md:text-5xl">
-                                Testimonios
-                                <br />
-                                <span className="text-[#567580]">
-                                    de pacientes acompañadas.
-                                </span>
-                            </h2>
-
-                            <p className="max-w-2xl text-base leading-relaxed text-[#506065] md:text-lg">
-                                La cirugía mamaria también implica confianza, claridad y un
-                                proceso acompañado desde la primera consulta.
-                            </p>
-
-                            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[#506065]/60">
-                                Imágenes ilustrativas del proceso de atención.
-                            </p>
-                        </div>
-
-                        <div className="relative -mx-6 overflow-hidden">
-                            <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-white to-transparent" />
-                            <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-white to-transparent" />
-
-                            <div className="flex w-max animate-[testimonialMarquee_48s_linear_infinite] gap-6 pr-6 hover:[animation-play-state:paused]">
-                                {testimoniosLoop.map((item, index) => (
+                            <div className="mt-5 grid gap-2.5 text-sm text-white/78 sm:flex sm:flex-wrap">
+                                {beneficios.map((item) => (
                                     <div
-                                        key={`${item.quote}-${index}`}
-                                        aria-hidden={index >= testimonios.length}
-                                        className="group relative w-[300px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] shadow-[0_24px_70px_rgba(37,55,61,0.12)] transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/55 hover:bg-white md:w-[370px]"
+                                        key={item}
+                                        className="flex items-center gap-2 sm:rounded-full sm:border sm:border-white/12 sm:bg-white/[0.07] sm:px-3.5 sm:py-2 sm:backdrop-blur"
                                     >
-                                        <div className="relative h-48 overflow-hidden bg-[#25373d]">
-                                            <img
-                                                src={item.image}
-                                                alt="Imagen ilustrativa del proceso de atención"
-                                                className="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.04]"
-                                            />
-
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#25373d]/80 via-[#25373d]/20 to-transparent" />
-
-                                            <span className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-white backdrop-blur">
-                                                {item.tag}
-                                            </span>
-                                        </div>
-
-                                        <div className="relative p-7">
-                                            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/65 to-transparent" />
-
-                                            <div className="mb-6 flex items-center justify-between">
-                                                <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#567580]">
-                                                    Testimonio real
-                                                </span>
-
-                                                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white text-2xl leading-none text-[#567580]">
-                                                    ”
-                                                </span>
-                                            </div>
-
-                                            <p className="min-h-[120px] text-base leading-relaxed text-[#25373d]/86">
-                                                “{item.quote}”
-                                            </p>
-
-                                            <div className="mt-8 flex items-center gap-2">
-                                                <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
-                                                <span className="text-xs uppercase tracking-[0.18em] text-[#506065]">
-                                                    {item.category}
-                                                </span>
-                                            </div>
-                                        </div>
+                                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#83a0ab]/45 text-[0.68rem] leading-none text-[#c3d4da] sm:h-1.5 sm:w-1.5 sm:border-0 sm:bg-[#83a0ab] sm:text-transparent">
+                                            ✓
+                                        </span>
+                                        <span>{item}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
+
+                        <div className="hidden lg:block">
+                            <div className="relative ml-auto max-w-[430px] overflow-hidden rounded-2xl border border-white/14 bg-white/[0.07] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl">
+                                <img
+                                    src="/images/mamaria-card.jpg"
+                                    alt="Cirugía mamaria con resultados naturales"
+                                    className="h-[520px] w-full rounded-xl object-cover object-center"
+                                />
+                                <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/16 bg-[#25373d]/78 p-4 backdrop-blur">
+                                    <p className="text-sm leading-6 text-white/82">
+                                        El objetivo no es copiar un resultado, sino diseñar uno posible para vos.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-                {/* CTA - OSCURO */}
-                <section
-                    ref={ctaRef}
-                    className="relative overflow-hidden bg-[#25373d] px-6 py-32 text-white"
-                >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(131,160,171,0.24),transparent_34%),radial-gradient(circle_at_15%_85%,rgba(86,117,128,0.18),transparent_34%)]" />
-                    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
+                <section className="relative overflow-hidden bg-[#f5f8f9] px-5 py-14 sm:px-6 md:py-20">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.1),transparent_36%)]" />
 
-                    <div
-                        ref={ctaContentRef}
-                        className="relative z-10 mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/[0.06] px-6 py-14 text-center text-white shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur md:px-12 md:py-16"
-                    >
-                        <div className="absolute -top-32 left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#83a0ab]/20 blur-3xl" />
-                        <div className="absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#567580]/20 blur-3xl" />
-
-                        <div className="relative z-10">
-                            <span className="mb-7 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab]">
+                    <div className="relative z-10 mx-auto grid max-w-6xl gap-8 rounded-2xl border border-[#25373d]/10 bg-white p-5 shadow-[0_18px_50px_rgba(37,55,61,0.08)] sm:p-7 md:grid-cols-[1fr_0.78fr] md:items-center md:p-8">
+                        <div>
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#567580] sm:text-xs">
                                 Evaluación personalizada
                             </span>
 
-                            <h2 className="mb-8 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
-                                Si estás pensando en una cirugía mamaria,
-                                <br />
-                                <span className="text-[#83a0ab]">
-                                    lo primero es evaluar tu caso.
-                                </span>
+                            <h2 className="mb-4 text-balance text-[1.8rem] font-semibold leading-[1.08] sm:text-4xl">
+                                Una decisión estética con planificación médica.
                             </h2>
 
-                            <p className="mx-auto mb-10 max-w-2xl leading-relaxed text-white/72">
-                                Hablemos de tus objetivos, resolvamos tus dudas y veamos cuál es
-                                la mejor alternativa para vos.
+                            <p className="leading-7 text-[#506065]">
+                                Muchas pacientes buscan mejorar proporciones, recuperar armonía o
+                                sentirse más cómodas con su cuerpo. La consulta ayuda a definir qué
+                                puede lograrse de forma segura y natural.
                             </p>
-
-                            <a
-                                href="https://wa.me/5491124793160"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-10 py-5 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
-                            >
-                                QUIERO CHATEAR CON EL DOCTOR
-                            </a>
                         </div>
+
+                        <div className="rounded-2xl border border-[#25373d]/10 bg-[#f5f8f9] p-5">
+                            <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-[#6b8994]">
+                                Diseño personalizado
+                            </p>
+                            <p className="text-balance text-xl font-semibold leading-tight text-[#25373d]">
+                                Volumen, forma y proporción deben pensarse para tu cuerpo, no para una tendencia.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative overflow-hidden bg-[#25373d] px-5 py-14 text-white sm:px-6 md:py-20">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.045] [background-size:56px_56px]" />
+
+                    <div className="relative z-10 mx-auto max-w-6xl">
+                        <div className="mb-8 max-w-3xl md:mb-10">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#b7cbd2] backdrop-blur sm:text-xs">
+                                Qué se puede trabajar
+                            </span>
+
+                            <h2 className="mb-4 text-balance text-[2rem] font-semibold leading-[1.08] text-white sm:text-4xl md:text-5xl">
+                                Cada cuerpo necesita una indicación distinta.
+                            </h2>
+                        </div>
+
+                        <div className="grid gap-3.5 sm:grid-cols-2 md:grid-cols-5 md:gap-5">
+                            {objetivos.map((item, index) => (
+                                <div
+                                    key={item}
+                                    className="rounded-2xl border border-white/12 bg-white/[0.06] p-5 shadow-[0_16px_42px_rgba(0,0,0,0.16)] backdrop-blur-xl"
+                                >
+                                    <span className="mb-5 block text-xs uppercase tracking-[0.18em] text-[#83a0ab]">
+                                        0{index + 1}
+                                    </span>
+                                    <h3 className="text-base font-medium leading-snug text-white">
+                                        {item}
+                                    </h3>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative overflow-hidden bg-white px-5 py-14 sm:px-6 md:py-20">
+                    <div className="mx-auto max-w-6xl">
+                        <div className="mb-8 max-w-3xl md:mb-10">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#567580] sm:text-xs">
+                                Proceso
+                            </span>
+
+                            <h2 className="mb-4 text-balance text-[2rem] font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
+                                Claro, personalizado y acompañado.
+                            </h2>
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-3">
+                            {proceso.map((item) => (
+                                <article
+                                    key={item.number}
+                                    className="rounded-2xl border border-[#25373d]/10 bg-[#f5f8f9] p-6 shadow-[0_16px_40px_rgba(37,55,61,0.08)]"
+                                >
+                                    <span className="text-xs uppercase tracking-[0.18em] text-[#6b8994]">
+                                        {item.number}
+                                    </span>
+                                    <h3 className="mb-3 mt-4 text-xl font-semibold text-[#25373d]">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-sm leading-7 text-[#506065]">
+                                        {item.text}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative overflow-hidden bg-[#25373d] px-5 py-14 text-white sm:px-6 md:py-20">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
+
+                    <div className="relative z-10 mx-auto max-w-6xl">
+                        <div className="mb-8 max-w-3xl md:mb-10">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#b7cbd2] backdrop-blur sm:text-xs">
+                                Resultados reales
+                            </span>
+
+                            <h2 className="mb-4 text-balance text-[2rem] font-semibold leading-[1.08] text-white sm:text-4xl md:text-5xl">
+                                Antes y después, con expectativas realistas.
+                            </h2>
+
+                            <p className="max-w-2xl leading-7 text-white/70">
+                                Cada cuerpo, tejido y recuperación son distintos. Por eso la
+                                evaluación médica es fundamental.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-5 md:grid-cols-2 md:gap-8">
+                            {["/images/mamaria-antes-despues-1.jpg", "/images/mamaria-antes-despues-2.jpg"].map((image) => (
+                                <div
+                                    key={image}
+                                    className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_16px_42px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-4"
+                                >
+                                    <img
+                                        src={image}
+                                        alt="Resultado de cirugía mamaria antes y después"
+                                        className="aspect-[4/3] w-full rounded-xl bg-[#25373d] object-contain object-center md:aspect-[4/5]"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative overflow-hidden bg-[#506065] px-5 py-14 text-white sm:px-6 md:py-24">
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,#506065_0%,#567580_50%,#6b8994_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.08] [background-size:58px_58px]" />
+
+                    <div className="relative z-10 mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/14 bg-[#25373d]/78 px-5 py-10 text-center shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:px-6 md:px-12 md:py-16">
+                        <span className="mb-5 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#b7cbd2] sm:text-xs">
+                            Evaluación personalizada
+                        </span>
+
+                        <h2 className="mb-5 text-balance text-[2rem] font-semibold leading-[1.08] text-white sm:text-4xl md:text-5xl">
+                            Si estás pensando en una cirugía mamaria, podemos evaluarlo en consulta.
+                        </h2>
+
+                        <p className="mx-auto mb-8 max-w-2xl leading-7 text-white/74">
+                            Escribime y vemos cuál puede ser la mejor alternativa para vos.
+                        </p>
+
+                        <a
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/20 bg-[#25D366] px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-[0.05em] text-white shadow-[0_16px_34px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:px-10"
+                        >
+                            Escribirme por WhatsApp
+                        </a>
                     </div>
                 </section>
             </main>
 
             <Footer />
-
-            <style jsx global>{`
-                @keyframes testimonialMarquee {
-                    from {
-                        transform: translateX(0);
-                    }
-
-                    to {
-                        transform: translateX(calc(-50% - 12px));
-                    }
-                }
-            `}</style>
         </>
     );
 }

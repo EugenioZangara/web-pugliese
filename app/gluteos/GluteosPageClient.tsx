@@ -34,17 +34,17 @@ export default function GluteosPage() {
         {
             number: "01",
             title: "Evaluación corporal",
-            text: "Se analiza tu anatomía, proporciones, objetivos y expectativas para definir una estrategia segura.",
+            text: "Analizamos tu anatomía, proporciones, objetivos y expectativas para definir una estrategia segura.",
         },
         {
             number: "02",
             title: "Diseño personalizado",
-            text: "No se busca un volumen estándar, sino una forma coherente con tu cuerpo y tu armonía general.",
+            text: "No buscamos un volumen estándar, sino una forma coherente con tu cuerpo y tu armonía general.",
         },
         {
             number: "03",
-            title: "Seguimiento",
-            text: "El acompañamiento postoperatorio es clave para controlar la evolución y transitar el proceso con tranquilidad.",
+            title: "Seguimiento real",
+            text: "El acompañamiento postoperatorio ayuda a controlar la evolución y transitar el proceso con tranquilidad.",
         },
     ];
 
@@ -91,117 +91,55 @@ export default function GluteosPage() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
         const ctx = gsap.context(() => {
+            const animateIn = (
+                target: gsap.TweenTarget,
+                trigger: Element | null,
+                fromVars: gsap.TweenVars = { opacity: 0, y: isMobile ? 26 : 56 },
+                stagger?: number
+            ) => {
+                gsap.fromTo(target, fromVars, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: reduceMotion ? 0 : isMobile ? 0.55 : 0.8,
+                    ease: "power2.out",
+                    stagger: reduceMotion ? 0 : stagger,
+                    scrollTrigger: reduceMotion
+                        ? undefined
+                        : {
+                              trigger,
+                              start: isMobile ? "top 88%" : "top 82%",
+                              toggleActions: "play none none none",
+                          },
+                });
+            };
+
             gsap.fromTo(
                 heroRef.current,
-                { opacity: 0, y: 40 },
+                { opacity: 0, y: reduceMotion ? 0 : 24 },
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1.1,
+                    duration: reduceMotion ? 0 : 0.75,
                     ease: "power3.out",
                 }
             );
 
-            gsap.fromTo(
-                infoContentRef.current,
-                { opacity: 0, y: 80 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: infoRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
-                objetivosItemsRef.current,
-                { opacity: 0, y: 70 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    stagger: 0.15,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: objetivosRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
-                procesoItemsRef.current,
-                { opacity: 0, y: 70 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    stagger: 0.2,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: procesoRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
+            animateIn(infoContentRef.current, infoRef.current);
+            animateIn(objetivosItemsRef.current, objetivosRef.current, undefined, isMobile ? 0.06 : 0.12);
+            animateIn(procesoItemsRef.current, procesoRef.current, undefined, isMobile ? 0.06 : 0.14);
+            animateIn(
                 resultImagesRef.current,
-                { opacity: 0, y: 80, scale: 0.96 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    stagger: 0.2,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: resultadosRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
+                resultadosRef.current,
+                { opacity: 0, y: isMobile ? 24 : 52, scale: 0.98 },
+                isMobile ? 0.06 : 0.14
             );
-
-            gsap.fromTo(
-                testimoniosTitleRef.current,
-                { opacity: 0, y: 70 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: testimoniosRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
-
-            gsap.fromTo(
-                ctaContentRef.current,
-                { opacity: 0, y: 70 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: ctaRef.current,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                }
-            );
+            animateIn(testimoniosTitleRef.current, testimoniosRef.current);
+            animateIn(ctaContentRef.current, ctaRef.current);
         });
 
         return () => ctx.revert();
@@ -211,93 +149,84 @@ export default function GluteosPage() {
         <>
             <Navbar />
 
-            <main className="bg-[#ffffff] text-[#25373d]">
-                {/* HERO - OSCURO */}
+            <main className="overflow-x-hidden bg-white text-[#25373d]">
                 <section
                     ref={heroRef}
-                    className="relative flex min-h-screen items-center overflow-hidden bg-[#25373d] px-6 pt-28 text-white"
+                    className="relative flex min-h-[100svh] items-end overflow-hidden bg-[#25373d] px-5 pb-8 pt-24 text-white sm:px-6 sm:pb-10 md:items-center md:py-28"
                 >
-                    <div className="absolute inset-0 bg-[url('/images/gluteos-hero.jpg')] bg-cover bg-center opacity-40" />
-                    <div className="absolute inset-0 bg-[#25373d]/78" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/90 via-[#25373d]/58 to-[#25373d]/96" />
+                    <div className="absolute inset-0 bg-[url('/images/gluteos-hero.jpg')] bg-cover bg-[center_top] opacity-45 md:bg-center" />
+                    <div className="absolute inset-0 bg-[#25373d]/72" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/88 via-[#25373d]/58 to-[#25373d]/96" />
 
-                    <div className="absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#83a0ab]/18 blur-3xl" />
-                    <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#567580]/22 blur-3xl" />
-
-                    <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
-                        <div>
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
-                                Cirugía de glúteos
+                    <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-8 md:grid-cols-[1.02fr_0.98fr] md:gap-14">
+                        <div className="max-w-xl">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.08] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.16em] text-[#b7cbd2] backdrop-blur sm:text-xs sm:tracking-[0.18em]">
+                                Resultados naturales
                             </span>
 
-                            <h1 className="mb-8 text-4xl font-semibold leading-[1.05] text-white md:text-6xl">
-                                Forma, volumen
-                                <br />
-                                <span className="text-[#83a0ab]">
-                                    y armonía corporal.
-                                </span>
+                            <h1 className="mb-5 text-balance text-[2.12rem] font-semibold leading-[1.04] text-white min-[390px]:text-[2.35rem] sm:text-5xl md:text-6xl">
+                                Forma, volumen y armonía corporal.
                             </h1>
 
-                            <p className="mb-10 max-w-xl text-lg leading-relaxed text-white/76">
-                                La cirugía de glúteos busca mejorar la forma y proporción del
-                                cuerpo, con una planificación personalizada y resultados pensados
-                                para verse naturales.
+                            <p className="mb-6 max-w-lg text-[0.98rem] leading-7 text-white/78 sm:mb-7 sm:text-lg">
+                                Una planificación personalizada para mejorar la proporción del
+                                cuerpo, priorizando resultados naturales y una evaluación médica
+                                honesta.
                             </p>
 
                             <a
                                 href="https://wa.me/5491124793160"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
+                                className="inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-white/20 bg-[#25D366] px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-[0.05em] text-white shadow-[0_16px_34px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:px-8"
                             >
-                                QUIERO EVALUAR MI CASO
+                                Escribime y vemos tu caso
                             </a>
+
+                            <p className="mt-3 text-center text-xs leading-5 text-white/60 sm:text-left">
+                                Evaluación personalizada y acompañamiento real desde la primera consulta.
+                            </p>
                         </div>
 
-                        <div className="hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:block">
-                            <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-white/10">
+                        <div className="hidden rounded-[1.5rem] border border-white/12 bg-white/[0.06] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:block">
+                            <div className="aspect-[4/5] overflow-hidden rounded-[1.1rem] bg-white/10">
                                 <img
                                     src="/images/gluteos-card.png"
                                     alt="Cirugía de glúteos con resultado natural"
-                                    className="h-full w-full object-cover opacity-90"
+                                    className="h-full w-full object-cover object-center opacity-90"
                                 />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* INFO - CLARO */}
                 <section
                     ref={infoRef}
-                    className="relative overflow-hidden bg-[#f5f8f9] px-6 py-24 text-[#25373d]"
+                    className="relative overflow-hidden bg-[#f5f8f9] px-5 py-16 text-[#25373d] sm:px-6 md:py-24"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.12),transparent_36%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.1),transparent_36%)]" />
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
 
                     <div
                         ref={infoContentRef}
-                        className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2"
+                        className="relative z-10 mx-auto grid max-w-6xl items-start gap-8 md:grid-cols-2 md:gap-14"
                     >
                         <div>
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-white px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580] shadow-sm">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/45 bg-white px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#567580] shadow-sm sm:text-xs">
                                 Evaluación personalizada
                             </span>
 
-                            <h2 className="mb-8 text-3xl font-semibold leading-[1.08] md:text-5xl">
-                                ¿Cuándo considerar
-                                <br />
-                                <span className="text-[#567580]">
-                                    una cirugía de glúteos?
-                                </span>
+                            <h2 className="mb-5 text-balance text-[2rem] font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
+                                ¿Cuándo considerar una cirugía de glúteos?
                             </h2>
 
-                            <p className="mb-8 leading-relaxed text-[#506065]">
-                                Muchas personas buscan mejorar la forma, proyección o proporción
-                                de los glúteos, pero no todos los cuerpos necesitan la misma
-                                técnica ni el mismo objetivo.
+                            <p className="mb-6 leading-7 text-[#506065]">
+                                Muchas personas buscan mejorar forma, proyección o proporción,
+                                pero cada cuerpo necesita una indicación distinta y expectativas
+                                realistas.
                             </p>
 
-                            <ul className="space-y-4 text-[#25373d]">
+                            <ul className="space-y-3.5 text-[0.97rem] leading-6 text-[#25373d]">
                                 <li className="flex gap-3">
                                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
                                     Si querés mejorar forma y volumen de manera armónica.
@@ -310,29 +239,29 @@ export default function GluteosPage() {
 
                                 <li className="flex gap-3">
                                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
-                                    Si querés un resultado natural, no exagerado.
+                                    Si querés un resultado natural, sin exageraciones.
                                 </li>
 
                                 <li className="flex gap-3">
                                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#83a0ab]" />
-                                    Si necesitás una evaluación para saber qué opción es segura.
+                                    Si necesitás saber qué opción es segura para tu caso.
                                 </li>
                             </ul>
                         </div>
 
-                        <div className="relative overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-white p-8 shadow-[0_24px_70px_rgba(37,55,61,0.12)]">
+                        <div className="relative overflow-hidden rounded-2xl border border-[#25373d]/10 bg-white p-6 shadow-[0_18px_46px_rgba(37,55,61,0.1)] md:p-8">
                             <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#83a0ab]/16 blur-3xl" />
 
                             <div className="relative z-10">
-                                <p className="mb-4 text-sm uppercase tracking-[0.22em] text-[#6b8994]">
+                                <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#6b8994]">
                                     Diseño personalizado
                                 </p>
 
-                                <h3 className="mb-6 text-2xl font-semibold">
+                                <h3 className="mb-4 text-balance text-[1.45rem] font-semibold leading-tight md:text-2xl">
                                     El objetivo no es más volumen a cualquier costo.
                                 </h3>
 
-                                <p className="leading-relaxed text-[#506065]">
+                                <p className="leading-7 text-[#506065]">
                                     La clave está en lograr una forma proporcionada, segura y
                                     coherente con tu cuerpo. Por eso la evaluación médica define
                                     qué puede lograrse en cada caso.
@@ -342,47 +271,40 @@ export default function GluteosPage() {
                     </div>
                 </section>
 
-                {/* OBJETIVOS - OSCURO */}
                 <section
                     ref={objetivosRef}
-                    className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
+                    className="relative overflow-hidden bg-[#25373d] px-5 py-16 text-white sm:px-6 md:py-24"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.22),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.2),transparent_36%)]" />
-                    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.05] [background-size:56px_56px]" />
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
-                        <div className="mb-14 max-w-3xl">
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
+                        <div className="mb-8 max-w-3xl md:mb-14">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#b7cbd2] backdrop-blur sm:text-xs">
                                 Qué se puede trabajar
                             </span>
 
-                            <h2 className="mb-6 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
-                                Cada cuerpo necesita
-                                <br />
-                                <span className="text-[#83a0ab]">
-                                    una planificación distinta.
-                                </span>
+                            <h2 className="mb-5 text-balance text-[2rem] font-semibold leading-[1.08] text-white sm:text-4xl md:text-5xl">
+                                Cada cuerpo necesita una planificación distinta.
                             </h2>
 
-                            <p className="max-w-2xl leading-relaxed text-white/68">
+                            <p className="max-w-2xl leading-7 text-white/70">
                                 El procedimiento se define según tu anatomía, objetivos y
                                 posibilidades reales, priorizando seguridad y naturalidad.
                             </p>
                         </div>
 
-                        <div className="grid gap-5 md:grid-cols-5">
+                        <div className="grid gap-3.5 sm:grid-cols-2 md:grid-cols-5 md:gap-5">
                             {objetivos.map((item, index) => (
                                 <div
                                     key={item}
                                     ref={(el) => {
                                         if (el) objetivosItemsRef.current[index] = el;
                                     }}
-                                    className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+                                    className="relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-5 shadow-[0_18px_46px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-6"
                                 >
-                                    <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-[#83a0ab]/10 blur-3xl" />
-
-                                    <span className="mb-8 block text-sm uppercase tracking-[0.22em] text-[#83a0ab]">
+                                    <span className="mb-5 block text-xs uppercase tracking-[0.18em] text-[#83a0ab]">
                                         0{index + 1}
                                     </span>
 
@@ -395,97 +317,115 @@ export default function GluteosPage() {
                     </div>
                 </section>
 
-                {/* PROCESO - BLANCO */}
                 <section
                     ref={procesoRef}
-                    className="relative overflow-hidden bg-white px-6 py-24 text-[#25373d]"
+                    className="relative overflow-hidden bg-white px-5 py-16 text-[#25373d] sm:px-6 md:py-24"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.1),transparent_36%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.15),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.09),transparent_36%)]" />
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
-                        <div className="mb-14 max-w-3xl">
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
+                        <div className="mb-8 max-w-3xl md:mb-14">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#567580] sm:text-xs">
                                 Proceso
                             </span>
 
-                            <h2 className="mb-6 text-3xl font-semibold leading-[1.08] md:text-5xl">
-                                Un diseño personalizado
-                                <br />
-                                <span className="text-[#567580]">
-                                    para tu cuerpo.
-                                </span>
+                            <h2 className="mb-5 text-balance text-[2rem] font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
+                                Un diseño personalizado para tu cuerpo.
                             </h2>
 
-                            <p className="leading-relaxed text-[#506065]">
+                            <p className="max-w-2xl leading-7 text-[#506065]">
                                 No se trata de aplicar una técnica estándar, sino de definir una
                                 estrategia segura, proporcionada y posible para tu caso.
                             </p>
                         </div>
 
-                        <div className="grid gap-6 md:grid-cols-3">
+                        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
                             {proceso.map((item, index) => (
                                 <div
                                     key={item.number}
                                     ref={(el) => {
                                         if (el) procesoItemsRef.current[index] = el;
                                     }}
-                                    className="relative overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] p-7 shadow-[0_24px_70px_rgba(37,55,61,0.1)]"
+                                    className="relative overflow-hidden rounded-2xl border border-[#25373d]/10 bg-[#f5f8f9] p-6 shadow-[0_18px_46px_rgba(37,55,61,0.09)] md:p-7"
                                 >
                                     <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#83a0ab]/12 blur-3xl" />
 
-                                    <span className="text-sm uppercase tracking-[0.22em] text-[#6b8994]">
+                                    <span className="text-xs uppercase tracking-[0.18em] text-[#6b8994]">
                                         {item.number}
                                     </span>
 
-                                    <h3 className="mt-4 mb-4 text-xl font-medium text-[#25373d]">
+                                    <h3 className="mb-3 mt-4 text-xl font-medium text-[#25373d]">
                                         {item.title}
                                     </h3>
 
-                                    <p className="text-sm leading-relaxed text-[#506065]">
+                                    <p className="text-sm leading-7 text-[#506065]">
                                         {item.text}
                                     </p>
                                 </div>
                             ))}
                         </div>
+
+                        <div className="mt-8 rounded-2xl border border-[#25373d]/10 bg-[#25373d] p-5 text-white shadow-[0_18px_46px_rgba(37,55,61,0.12)] md:mt-10 md:flex md:items-center md:justify-between md:gap-8 md:p-6">
+                            <div className="mb-5 md:mb-0">
+                                <p className="mb-2 text-xs font-medium uppercase tracking-[0.16em] text-[#b7cbd2]">
+                                    Evaluación personalizada
+                                </p>
+                                <h3 className="text-balance text-xl font-semibold leading-tight md:text-2xl">
+                                    Cada caso es único. Escribime y vemos qué opción tiene sentido para vos.
+                                </h3>
+                                <p className="mt-3 text-sm leading-6 text-white/68">
+                                    También podés consultar por organización de la consulta si venís
+                                    desde el interior o por formas de pago disponibles.
+                                </p>
+                            </div>
+
+                            <a
+                                href="https://wa.me/5491124793160"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex min-h-[50px] w-full shrink-0 items-center justify-center rounded-full bg-[#25D366] px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-[0.05em] text-white shadow-[0_16px_34px_rgba(37,211,102,0.22)] transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#83a0ab] md:w-auto"
+                            >
+                                Consultar por WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </section>
 
-                {/* RESULTADOS - OSCURO */}
                 <section
                     ref={resultadosRef}
-                    className="relative overflow-hidden bg-[#25373d] px-6 py-24 text-white"
+                    className="relative overflow-hidden bg-[#25373d] px-5 py-16 text-white sm:px-6 md:py-24"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.22),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.2),transparent_36%)]" />
-                    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.05] [background-size:56px_56px]" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
-                        <div className="mb-16 text-center">
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab] backdrop-blur">
+                        <div className="mb-8 text-left md:mb-14 md:text-center">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/30 bg-white/[0.06] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#b7cbd2] backdrop-blur sm:text-xs">
                                 Resultados reales
                             </span>
 
-                            <h2 className="mb-5 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
+                            <h2 className="mb-4 text-balance text-[2rem] font-semibold leading-[1.08] text-white sm:text-4xl md:text-5xl">
                                 Antes y después
                             </h2>
 
-                            <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/68 md:text-lg">
+                            <p className="max-w-2xl text-base leading-7 text-white/70 md:mx-auto md:text-lg">
                                 Cambios reales, con foco en proporción corporal, naturalidad y
                                 planificación personalizada.
                             </p>
                         </div>
 
-                        <div className="grid gap-8 md:grid-cols-2">
+                        <div className="grid gap-5 md:grid-cols-2 md:gap-8">
                             <div
                                 ref={(el) => {
                                     if (el) resultImagesRef.current[0] = el;
                                 }}
-                                className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+                                className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_18px_46px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-4"
                             >
                                 <img
                                     src="/images/gluteos-antes-despues-1.png"
                                     alt="Resultado cirugía de glúteos antes y después"
-                                    className="h-[520px] w-full rounded-[1.4rem] object-cover"
+                                    className="aspect-[4/5] w-full rounded-xl bg-[#25373d] object-contain object-center md:aspect-auto md:h-[520px] md:rounded-[1.4rem] md:object-cover"
                                 />
                             </div>
 
@@ -493,18 +433,18 @@ export default function GluteosPage() {
                                 ref={(el) => {
                                     if (el) resultImagesRef.current[1] = el;
                                 }}
-                                className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+                                className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_18px_46px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-4"
                             >
                                 <img
                                     src="/images/gluteos-antes-despues-2.png"
                                     alt="Resultado cirugía de glúteos antes y después"
-                                    className="h-[520px] w-full rounded-[1.4rem] object-cover"
+                                    className="aspect-[4/5] w-full rounded-xl bg-[#25373d] object-contain object-center md:aspect-auto md:h-[520px] md:rounded-[1.4rem] md:object-cover"
                                 />
                             </div>
                         </div>
 
-                        <div className="mt-10 rounded-[2rem] border border-white/12 bg-white/[0.06] p-6 backdrop-blur-xl">
-                            <p className="text-sm leading-relaxed text-white/68">
+                        <div className="mt-6 rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur-xl md:mt-10 md:p-6">
+                            <p className="text-sm leading-7 text-white/70">
                                 Las imágenes muestran casos reales. Cada cuerpo y proceso de
                                 recuperación es distinto; por eso la evaluación médica es clave
                                 para definir expectativas realistas.
@@ -513,85 +453,78 @@ export default function GluteosPage() {
                     </div>
                 </section>
 
-                {/* TESTIMONIOS - CLARO CON MARQUEE INFINITO */}
                 <section
                     ref={testimoniosRef}
-                    className="relative overflow-hidden bg-[#ffffff] px-6 py-24 text-[#25373d]"
+                    className="relative overflow-hidden bg-white px-5 py-16 text-[#25373d] sm:px-6 md:py-24"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.1),transparent_36%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,160,171,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(86,117,128,0.09),transparent_36%)]" />
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
-                    <div className="absolute -right-32 top-16 h-[420px] w-[420px] rounded-full bg-[#83a0ab]/12 blur-3xl" />
-                    <div className="absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-[#567580]/10 blur-3xl" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
-                        <div ref={testimoniosTitleRef} className="mb-12 max-w-3xl">
-                            <span className="mb-6 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#567580]">
+                        <div ref={testimoniosTitleRef} className="mb-8 max-w-3xl md:mb-12">
+                            <span className="mb-4 inline-flex rounded-full border border-[#83a0ab]/45 bg-[#f5f8f9] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#567580] sm:text-xs">
                                 Experiencias reales
                             </span>
 
-                            <h2 className="mb-5 text-3xl font-semibold leading-[1.08] md:text-5xl">
-                                Testimonios
-                                <br />
-                                <span className="text-[#567580]">
-                                    de pacientes acompañados.
-                                </span>
+                            <h2 className="mb-4 text-balance text-[2rem] font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
+                                Testimonios de pacientes acompañados.
                             </h2>
 
-                            <p className="max-w-2xl text-base leading-relaxed text-[#506065] md:text-lg">
+                            <p className="max-w-2xl text-base leading-7 text-[#506065] md:text-lg">
                                 La cirugía de glúteos también requiere confianza, claridad y un
                                 proceso acompañado desde la primera consulta.
                             </p>
 
-                            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[#6b8994]">
+                            <p className="mt-4 text-xs uppercase tracking-[0.16em] text-[#6b8994]">
                                 Imágenes ilustrativas del proceso de atención.
                             </p>
                         </div>
 
-                        <div className="relative -mx-6 overflow-hidden">
-                            <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-white to-transparent" />
-                            <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-white to-transparent" />
+                        <div className="relative -mx-5 overflow-hidden sm:-mx-6">
+                            <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-10 bg-gradient-to-r from-white to-transparent md:w-24" />
+                            <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-10 bg-gradient-to-l from-white to-transparent md:w-24" />
 
-                            <div className="flex w-max animate-[testimonialMarquee_48s_linear_infinite] gap-6 pr-6 hover:[animation-play-state:paused]">
+                            <div className="flex w-max animate-[testimonialMarquee_58s_linear_infinite] gap-4 pr-4 motion-reduce:animate-none md:gap-6 md:pr-6 md:hover:[animation-play-state:paused]">
                                 {testimoniosLoop.map((item, index) => (
                                     <div
                                         key={`${item.quote}-${index}`}
                                         aria-hidden={index >= testimonios.length}
-                                        className="group relative w-[300px] flex-shrink-0 overflow-hidden rounded-[2rem] border border-[#25373d]/10 bg-[#f5f8f9] shadow-[0_24px_70px_rgba(37,55,61,0.1)] transition duration-300 hover:-translate-y-1 hover:border-[#83a0ab]/70 hover:bg-white md:w-[370px]"
+                                        className="group relative w-[82vw] max-w-[330px] flex-shrink-0 overflow-hidden rounded-2xl border border-[#25373d]/10 bg-[#f5f8f9] shadow-[0_18px_46px_rgba(37,55,61,0.09)] transition duration-300 hover:border-[#83a0ab]/70 hover:bg-white md:w-[370px]"
                                     >
-                                        <div className="relative h-48 overflow-hidden bg-[#25373d]">
+                                        <div className="relative h-44 overflow-hidden bg-[#25373d] md:h-48">
                                             <img
                                                 src={item.image}
                                                 alt="Imagen ilustrativa del proceso de atención"
-                                                className="h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-[1.04]"
+                                                className="h-full w-full object-cover object-center opacity-85 transition duration-500 motion-reduce:transition-none md:group-hover:scale-[1.04]"
                                             />
 
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#25373d]/75 via-[#25373d]/15 to-transparent" />
 
-                                            <span className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-white backdrop-blur">
+                                            <span className="absolute bottom-3 left-3 rounded-full border border-white/20 bg-white/12 px-3 py-2 text-[0.66rem] font-medium uppercase tracking-[0.14em] text-white backdrop-blur md:bottom-4 md:left-4 md:px-4">
                                                 {item.tag}
                                             </span>
                                         </div>
 
-                                        <div className="relative p-7">
+                                        <div className="relative p-6 md:p-7">
                                             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/65 to-transparent" />
 
-                                            <div className="mb-6 flex items-center justify-between">
-                                                <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#6b8994]">
+                                            <div className="mb-5 flex items-center justify-between gap-4">
+                                                <span className="text-[0.66rem] font-medium uppercase tracking-[0.17em] text-[#6b8994]">
                                                     Testimonio real
                                                 </span>
 
-                                                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white text-2xl leading-none text-[#83a0ab]">
-                                                    ”
+                                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#83a0ab]/35 bg-white text-xl leading-none text-[#83a0ab]">
+                                                    &rdquo;
                                                 </span>
                                             </div>
 
-                                            <p className="min-h-[120px] text-base leading-relaxed text-[#25373d]">
-                                                “{item.quote}”
+                                            <p className="min-h-[112px] text-[0.98rem] leading-7 text-[#25373d]">
+                                                &ldquo;{item.quote}&rdquo;
                                             </p>
 
-                                            <div className="mt-8 flex items-center gap-2">
+                                            <div className="mt-6 flex items-center gap-2">
                                                 <span className="h-2 w-2 rounded-full bg-[#83a0ab]" />
-                                                <span className="text-xs uppercase tracking-[0.18em] text-[#506065]">
+                                                <span className="text-[0.66rem] uppercase tracking-[0.16em] text-[#506065]">
                                                     {item.category}
                                                 </span>
                                             </div>
@@ -603,38 +536,30 @@ export default function GluteosPage() {
                     </div>
                 </section>
 
-                {/* CTA - TONO MEDIO PREMIUM */}
                 <section
                     ref={ctaRef}
-                    className="relative overflow-hidden bg-[#506065] px-6 py-32 text-white"
+                    className="relative overflow-hidden bg-[#506065] px-5 py-16 text-white sm:px-6 md:py-28"
                 >
-                    <div className="absolute inset-0 bg-[linear-gradient(135deg,#506065_0%,#567580_45%,#6b8994_100%)]" />
-                    <div className="absolute inset-0 opacity-[0.1] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:58px_58px]" />
-                    <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
-                    <div className="absolute -bottom-44 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#25373d]/35 blur-3xl" />
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,#506065_0%,#567580_50%,#6b8994_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.08] [background-size:58px_58px]" />
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
 
                     <div
                         ref={ctaContentRef}
-                        className="relative z-10 mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] border border-white/14 bg-[#25373d]/75 px-6 py-14 text-center text-white shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur-xl md:px-12 md:py-16"
+                        className="relative z-10 mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/14 bg-[#25373d]/78 px-5 py-10 text-center text-white shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:px-6 md:px-12 md:py-16"
                     >
-                        <div className="absolute -top-32 left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#83a0ab]/20 blur-3xl" />
-                        <div className="absolute -right-24 bottom-0 h-[300px] w-[300px] rounded-full bg-[#567580]/20 blur-3xl" />
+                        <div className="absolute -top-32 left-1/2 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-[#83a0ab]/18 blur-3xl" />
 
                         <div className="relative z-10">
-                            <span className="mb-7 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#83a0ab]">
+                            <span className="mb-5 inline-flex rounded-full border border-[#83a0ab]/35 bg-white/[0.06] px-3.5 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[#b7cbd2] sm:text-xs">
                                 Evaluación personalizada
                             </span>
 
-                            <h2 className="mb-8 text-3xl font-semibold leading-[1.08] text-white md:text-5xl">
-                                Si estás pensando en una cirugía de glúteos,
-                                <br />
-                                <span className="text-[#83a0ab]">
-                                    lo primero es evaluar tu caso.
-                                </span>
+                            <h2 className="mb-5 text-balance text-[2rem] font-semibold leading-[1.08] text-white sm:text-4xl md:text-5xl">
+                                Si estás pensando en una cirugía de glúteos, lo primero es evaluar tu caso.
                             </h2>
 
-                            <p className="mx-auto mb-10 max-w-2xl leading-relaxed text-white/72">
+                            <p className="mx-auto mb-8 max-w-2xl leading-7 text-white/74">
                                 Hablemos de tus objetivos, resolvamos tus dudas y veamos qué
                                 resultado puede lograrse de forma natural y personalizada.
                             </p>
@@ -643,9 +568,9 @@ export default function GluteosPage() {
                                 href="https://wa.me/5491124793160"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full border border-[#83a0ab] bg-white px-10 py-5 text-sm font-medium tracking-[0.08em] text-[#25373d] transition hover:-translate-y-0.5 hover:bg-[#83a0ab] hover:text-white"
+                                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/20 bg-[#25D366] px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-[0.05em] text-white shadow-[0_16px_34px_rgba(37,211,102,0.24)] transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:px-10"
                             >
-                                QUIERO CHATEAR CON EL DOCTOR
+                                Quiero chatear con el doctor
                             </a>
                         </div>
                     </div>
@@ -661,7 +586,7 @@ export default function GluteosPage() {
                     }
 
                     to {
-                        transform: translateX(calc(-50% - 12px));
+                        transform: translateX(calc(-50% - 8px));
                     }
                 }
             `}</style>
