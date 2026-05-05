@@ -109,7 +109,7 @@ export default function Filosofia() {
 
                         <div className="rounded-2xl border border-[#25373d]/10 bg-white p-5 shadow-[0_15px_40px_rgba(37,55,61,0.08)]">
                             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#6b8994]">
-                                04 · Naturalidad
+                                04 · Resultados naturales y armónicos
                             </p>
                             <p className="leading-relaxed text-[#25373d]">
                                 Resultados naturales en procedimientos como cirugía mamaria,

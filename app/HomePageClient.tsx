@@ -57,7 +57,7 @@ const resultados = [
 
 const diferenciales = [
     {
-        title: "Resultados naturales",
+        title: "Resultados naturales y armónicos",
         text: "La planificación busca armonía, proporción y cambios coherentes con tu cuerpo.",
     },
     {
