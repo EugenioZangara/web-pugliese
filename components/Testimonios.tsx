@@ -95,7 +95,7 @@ export default function Testimonios() {
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(131,160,171,0.22),transparent_34%),radial-gradient(circle_at_85%_80%,rgba(107,137,148,0.18),transparent_34%)]" />
 
-            <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] [background-size:56px_56px]" />
+            {/* Cuadriculado removido */}
 
             <div className="absolute left-0 top-0 h-full w-[35%] bg-gradient-to-r from-[#506065]/30 to-transparent" />
             <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-[#83a0ab]/12 blur-3xl" />

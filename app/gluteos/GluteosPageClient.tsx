@@ -281,7 +281,7 @@ export default function GluteosPage() {
                     className="relative overflow-hidden bg-[#25373d] px-5 py-16 text-white sm:px-6 md:py-24"
                 >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.05] [background-size:56px_56px]" />
+                    {/* Cuadriculado removido */}
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#83a0ab]/45 to-transparent" />
 
                     <div className="relative z-10 mx-auto max-w-6xl">
@@ -402,7 +402,7 @@ export default function GluteosPage() {
                     className="relative overflow-hidden bg-[#25373d] px-5 py-16 text-white sm:px-6 md:py-24"
                 >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,160,171,0.2),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(86,117,128,0.18),transparent_36%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.05] [background-size:56px_56px]" />
+                    {/* Cuadriculado removido */}
 
                     <div className="relative z-10 mx-auto max-w-6xl">
                         <div className="mb-8 text-left md:mb-14 md:text-center">
@@ -546,7 +546,7 @@ export default function GluteosPage() {
                     className="relative overflow-hidden bg-[#506065] px-5 py-16 text-white sm:px-6 md:py-28"
                 >
                     <div className="absolute inset-0 bg-[linear-gradient(135deg,#506065_0%,#567580_50%,#6b8994_100%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(90deg,#ffffff_1px,transparent_1px),linear-gradient(180deg,#ffffff_1px,transparent_1px)] opacity-[0.08] [background-size:58px_58px]" />
+                    {/* Cuadriculado removido */}
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
 
                     <div
