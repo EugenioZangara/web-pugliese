@@ -154,9 +154,14 @@ export default function GluteosPage() {
                     ref={heroRef}
                     className="relative flex min-h-[100svh] items-end overflow-hidden bg-[#25373d] px-5 pb-8 pt-24 text-white sm:px-6 sm:pb-10 md:items-center md:py-28"
                 >
-                    <div className="absolute inset-0 bg-[url('/images/gluteos-hero.jpg')] bg-cover bg-[center_top] opacity-45 md:bg-center" />
-                    <div className="absolute inset-0 bg-[#25373d]/72" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#25373d]/88 via-[#25373d]/58 to-[#25373d]/96" />
+                    <img
+                        src="/images/gluteos-card.png"
+                        alt=""
+                        className="absolute inset-0 h-full w-full scale-[1.02] object-cover object-center opacity-70 grayscale saturate-0 contrast-110 brightness-[0.72] md:hidden"
+                        aria-hidden="true"
+                    />
+                    <div className="absolute inset-0 bg-[#25373d]/72 mix-blend-color md:hidden" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(131,160,171,0.28),transparent_32%),linear-gradient(135deg,rgba(37,55,61,0.92)_0%,rgba(37,55,61,0.74)_42%,rgba(80,96,101,0.86)_100%)] md:bg-[radial-gradient(circle_at_18%_18%,rgba(131,160,171,0.24),transparent_32%),linear-gradient(135deg,#25373d_0%,#25373d_42%,#506065_100%)]" />
 
                     <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-8 md:grid-cols-[1.02fr_0.98fr] md:gap-14">
                         <div className="max-w-xl">
