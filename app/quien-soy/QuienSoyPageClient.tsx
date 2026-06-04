@@ -67,7 +67,7 @@ export default function QuienSoyPage() {
                             </h1>
 
                             <p className="mb-5 max-w-lg text-[1.03rem] leading-7 text-white/80 sm:mb-6 sm:text-lg">
-                                Soy el Doctor Víctor Pugliese. Acompaño cada decisión estética con
+                                Soy el Dr. Víctor Pugliese. Acompaño cada decisión estética con
                                 evaluación personalizada, naturalidad y seguimiento real.
                             </p>
 
