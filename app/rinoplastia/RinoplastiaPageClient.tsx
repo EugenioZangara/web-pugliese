@@ -45,7 +45,7 @@ export default function RinoplastiaPage() {
             <main className="overflow-x-hidden bg-white text-[#25373d]">
                 <section className="relative flex min-h-[100svh] items-start overflow-hidden bg-[#25373d] px-5 pb-10 pt-24 text-white sm:px-6 sm:items-center sm:py-12 sm:pt-28 lg:py-24 lg:pt-32">
                     <img
-                        src="/images/rinoplastia-hero.png"
+                        src="/images/rinoplastia-hero.jpg"
                         alt=""
                         className="absolute inset-0 h-full w-full scale-[1.02] object-cover object-center opacity-70 grayscale saturate-0 contrast-110 brightness-[0.72] lg:hidden"
                         aria-hidden="true"
@@ -99,7 +99,7 @@ export default function RinoplastiaPage() {
                         <div className="hidden lg:block">
                             <div className="relative ml-auto max-w-[430px] overflow-hidden rounded-2xl border border-white/14 bg-white/[0.07] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl">
                                 <img
-                                    src="/images/rinoplastia-hero.png"
+                                    src="/images/rinoplastia-hero.jpg"
                                     alt="Rinoplastia con resultado natural"
                                     className="h-[520px] w-full rounded-xl object-cover object-center grayscale saturate-0 contrast-105 brightness-[0.92]"
                                 />

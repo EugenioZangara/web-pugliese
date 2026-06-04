@@ -57,28 +57,28 @@ export default function GluteosPage() {
             tag: "Naturalidad",
         },
         {
-            image: "/images/testimonios/testimonio-2.png",
+            image: "/images/testimonios/testimonio-2.jpg",
             quote:
                 "Me explicó qué podía lograrse en mi caso y eso me dio mucha seguridad.",
             category: "Evaluación personalizada",
             tag: "Confianza",
         },
         {
-            image: "/images/testimonios/testimonio-3.png",
+            image: "/images/testimonios/testimonio-3.jpg",
             quote:
                 "Sentí acompañamiento en todo el proceso, especialmente después de la cirugía.",
             category: "Seguimiento",
             tag: "Acompañamiento real",
         },
         {
-            image: "/images/testimonios/testimonio-4.png",
+            image: "/images/testimonios/testimonio-4.jpg",
             quote:
                 "Quería verme más armónica, no cambiar por completo, y eso fue lo que logramos.",
             category: "Armonía corporal",
             tag: "Resultado natural",
         },
         {
-            image: "/images/testimonios/testimonio-5.png",
+            image: "/images/testimonios/testimonio-5.jpg",
             quote:
                 "La evaluación me ayudó a entender cuál era la mejor opción para mi cuerpo.",
             category: "Consulta inicial",

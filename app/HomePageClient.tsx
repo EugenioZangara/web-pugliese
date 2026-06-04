@@ -15,7 +15,7 @@ const procedimientos = [
         title: "Rinoplastia",
         description: "Armonía facial y mejora funcional con planificación personalizada.",
         href: "/rinoplastia",
-        image: "/images/rinoplastia-card.png",
+        image: "/images/rinoplastia-card.jpg",
     },
     {
         title: "Cirugía mamaria",
