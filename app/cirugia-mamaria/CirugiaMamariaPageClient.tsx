@@ -231,7 +231,7 @@ export default function CirugiaMamariaPage() {
                         </div>
 
                         <div className="grid gap-5 md:grid-cols-2 md:gap-8">
-                            {["/images/mamaria-antes-despues-1.jpg", "/images/mamaria-antes-despues-2.jpg"].map((image) => (
+                            {["/images/mamaria-antes-despues-1.jpg", "/images/mamaria-antes-despues-2.png"].map((image) => (
                                 <div
                                     key={image}
                                     className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_16px_42px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-4"
