@@ -119,18 +119,7 @@ export default function Footer() {
                 <div className="space-y-2">
                     <p>© 2026 Dr. Víctor Pugliese. Todos los derechos reservados.</p>
 
-                    <p>
-                        Sitio desarrollado por{" "}
-                        <a
-                            href="https://www.linkedin.com/in/eugenio-zangara/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Ver perfil de LinkedIn de Eugenio Zangara"
-                            className="font-medium text-white/55 transition hover:text-[#83a0ab]"
-                        >
-                            Eugenio Zangara
-                        </a>
-                    </p>
+                    
                 </div>
 
                 <div className="flex flex-col gap-2 md:flex-row md:gap-4">
